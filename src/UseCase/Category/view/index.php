@@ -93,7 +93,7 @@ $columns = [
             'status' => static function (string $url, stdClass $model): string {
                 return match ($model->status) {
                     '1' => A::widget()
-                        ->class('border-0 fa-stack text-danger')
+                        ->class('border-0 fa-stack text-danger-emphasis')
                         ->content(
                             Icon::renderIcon('solid', 'circle', ['class' => 'fa-stack-2x']),
                             Icon::renderIcon('solid', 'eye-slash', ['class' => 'fa-stack-1x fa-inverse']),
@@ -108,7 +108,7 @@ $columns = [
                         ->title(Yii::t('yii.blog', 'Disable category'))
                         ->render(),
                     default => A::widget()
-                        ->class('border-0 fa-stack text-success')
+                        ->class('border-0 fa-stack text-info-emphasis')
                         ->content(
                             Icon::renderIcon('solid', 'circle', ['class' => 'fa-stack-2x']),
                             Icon::renderIcon('solid', 'eye', ['class' => 'fa-stack-1x fa-inverse']),
@@ -171,7 +171,7 @@ $columns = [
                     ->class('bg-body-tertiary shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500')
                     ->content(
                         H::widget()->content(Encode::content($this->title))->class('fw-bold')->tagName('h1'),
-                        P::widget()->content(Yii::t('yii.blog', 'Add, edit, delete, turn off categories.')),
+                        P::widget()->content(Yii::t('yii.blog', 'Add, edit, delete, enable and disable categories.')),
                         Tag::widget()->class('mb-3')->tagName('hr'),
                         Div::widget()
                             ->class('d-flex justify-content-end mb-3')

@@ -7,6 +7,7 @@ namespace Yii\Blog\UseCase\Category;
 use yii\base\Module;
 use Yii\Blog\ActiveRecord\Category;
 use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
+use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -43,9 +44,6 @@ final class CategoryController extends Controller
             'enable' => [
                 'class' => Enable\EnableAction::class,
             ],
-            'index' => [
-                'class' => Index\IndexAction::class,
-            ],
             'register' => [
                 'class' => Register\RegisterAction::class,
             ],
@@ -77,6 +75,23 @@ final class CategoryController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionIndex(): string
+    {
+        return $this->render(
+            'index',
+            [
+                'dataProvider' => new ArrayDataProvider(
+                    [
+                        'allModels' =>$this->categoryService->buildCategoryTree(),
+                        'pagination' => [
+                            'pageSize' => 5,
+                        ],
+                    ],
+                ),
+            ],
+        );
     }
 
     public function getViewPath(): string

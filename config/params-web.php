@@ -11,6 +11,14 @@ return [
         ],
     ],
     'app.params' => [
+        'app.menu.isguest' => [
+            [
+                'label' => 'Blog',
+                'url' => ['/blog/index'],
+                'order' => 3,
+                'category' => 'yii.user',
+            ],
+        ],
         'app.menu.islogged' => [
             [
                 'label' => 'Category',

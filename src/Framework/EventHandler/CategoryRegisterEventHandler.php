@@ -9,6 +9,7 @@ use yii\base\BootstrapInterface;
 use yii\base\Event;
 use Yii\Blog\UseCase\Category\CategoryEvent;
 use Yii\Blog\UseCase\Category\Delete\DeleteAction;
+use Yii\Blog\UseCase\Category\Disable\DisableAction;
 use Yii\Blog\UseCase\Category\Enable\EnableAction;
 use Yii\Blog\UseCase\Category\Register\RegisterAction;
 use Yii\Blog\UseCase\Category\Update\UpdateAction;
@@ -45,6 +46,14 @@ final class CategoryRegisterEventHandler implements BootstrapInterface
                     'success',
                     Yii::t('yii.blog', 'Your category and its sub categories have been successfully deleted.'),
                 );
+            },
+        );
+
+        Event::on(
+            DisableAction::class,
+            CategoryEvent::AFTER_STATUS_DISABLE,
+            static function () use ($app): void {
+                $app->session->setFlash('warning', Yii::t('yii.blog', 'Your category has been successfully disabled.'));
             },
         );
 
