@@ -72,8 +72,6 @@ final class CategoryController extends Controller
                     'delete' => ['post'],
                     'disable' => ['post'],
                     'enable' => ['post'],
-                    'register' => ['post'],
-                    'update' => ['post'],
                 ],
             ],
         ];

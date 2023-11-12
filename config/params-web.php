@@ -10,18 +10,18 @@ return [
             'class' => CategoryController::class,
         ],
     ],
-    'app.menu.islogged' => [
-        [
-            'label' => 'Category',
-            'url' => ['/category/index'],
-            'order' => 1,
-            'category' => 'yii.user',
-            'linkOptions' => [
-                'data-method' => 'post',
+    'app.params' => [
+        'app.menu.islogged' => [
+            [
+                'label' => 'Category',
+                'url' => ['/category/index'],
+                'order' => 1,
+                'category' => 'yii.user',
+                'linkOptions' => [
+                    'data-method' => 'post',
+                ],
             ],
         ],
-    ],
-    'app.params' => [
         'icons' => '@npm/fortawesome--fontawesome-free/svgs/{family}/{name}.svg',
     ],
 ];

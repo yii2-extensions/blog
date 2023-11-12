@@ -41,7 +41,7 @@
             "dev-main": "1.0.x-dev"
         },
         "config-plugin": {
-            "params-console": "params-console.php",
+            "params": "params.php",
             "params-web": "params-web.php",
             "yii2-blog": "extension.php"
         },
