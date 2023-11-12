@@ -9,18 +9,21 @@ use PHPForge\Html\Helper\Encode;
 use PHPForge\Html\P;
 use PHPForge\Html\Select;
 use PHPForge\Html\Tag;
-use yii\base\Model;
 use Yii\Blog\BlogModule;
+use Yii\Blog\UseCase\Category\CategoryForm;
+use Yii\Blog\Widget\Seo\SeoForm;
 use Yii\Blog\Widget\Seo\SeoWidget;
 use yii\bootstrap5\ActiveForm;
+use yii\web\View;
 
 /**
  * @var BlogModule $blogModule
- * @var Model $formModel
+ * @var CategoryForm $formModel
  * @var string|null $id
  * @var array $nodeTree
+ * @var SeoForm $seoForm
  * @var string $title
- * @var yii\web\View $this
+ * @var View $this
  */
 $this->title = $title;
 $tabInput = 1;
@@ -48,10 +51,11 @@ $tabInput = 1;
                             Select::widget()
                                 ->ariaLabel('Select for parent category')
                                 ->autofocus(true)
-                                ->class('form-select')
+                                ->class('form-select mt-2')
                                 ->id('registerform-title')
-                                ->name('CategoryForm[parent]')
                                 ->items($nodeTree)
+                                ->labelContent(Yii::t('yii.blog', 'Parent category:'))
+                                ->name('CategoryForm[parent]')
                                 ->tabIndex($tabInput++)
                                 ->value($id)
                         ?>
@@ -87,19 +91,19 @@ $tabInput = 1;
                             ->textInput(
                                 [
                                     'oninvalid' => 'this.setCustomValidity("' . Yii::t('yii.blog', 'Enter slug Here.') . '")',
-                                    'required' => true,
+                                    'required' => false,
                                     'tabindex' => $tabInput++,
                                 ],
                             )
                     ?>
-                    <?= SeoWidget::widget(['__construct()' => [$form, $blogModule, $tabInput]]) ?>
+                    <?= SeoWidget::widget(['__construct()' => [$form, $blogModule, $seoForm, $tabInput]]) ?>
                     <?=
                         Div::widget()
                             ->class('d-grid gap-2')
                             ->content(
                                 Button::widget()
                                     ->class('btn btn-lg btn-primary btn-block mt-3')
-                                    ->content(Yii::t('yii.blog', 'Register'))
+                                    ->content($buttonTitle)
                                     ->name('category-button')
                                     ->submit()
                                     ->tabIndex(9)

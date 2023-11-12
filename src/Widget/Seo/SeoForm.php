@@ -27,15 +27,10 @@ final class SeoForm extends Model
     public function attributeLabels(): array
     {
         return [
-            'description' => Yii::t('yii.blog', 'Seo Description'),
             'h1' => Yii::t('yii.blog', 'Seo H1'),
-            'keywords' => Yii::t('yii.blog', 'Seo Keywords'),
             'title' => Yii::t('yii.blog', 'Seo Title'),
+            'keywords' => Yii::t('yii.blog', 'Seo Keywords'),
+            'description' => Yii::t('yii.blog', 'Seo Description'),
         ];
-    }
-
-    public function isEmpty(): bool
-    {
-        return (!$this->h1 && !$this->title && !$this->keywords && !$this->description);
     }
 }

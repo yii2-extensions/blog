@@ -17,5 +17,17 @@ return [
                 ],
             ],
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                'category/delete/<slug>' => 'category/delete',
+                'category/disable/<slug>' => 'category/disable',
+                'category/enable/<slug>' => 'category/enable',
+                'category/index/<slug>' => 'category/index',
+                'category/index/page/<page>/per-page/<per-page>' => 'category/index',
+                'category/update/<slug>' => 'category/update',
+            ],
+        ],
     ],
 ];

@@ -16,6 +16,7 @@ final class SeoWidget extends Widget
     public function __construct(
         private readonly ActiveForm $form,
         private readonly BlogModule $blogModule,
+        private readonly SeoForm $seoForm,
         private int $tabInput = 1,
         $config = []
     ) {
@@ -24,14 +25,12 @@ final class SeoWidget extends Widget
 
     public function run(): string
     {
-        $seoModel = new SeoForm();
-
         return $this->render(
             'index',
             [
                 'blogModule' => $this->blogModule,
                 'form' => $this->form,
-                'formModel' => $seoModel,
+                'formModel' => $this->seoForm,
                 'tabInput' => $this->tabInput,
             ],
         );

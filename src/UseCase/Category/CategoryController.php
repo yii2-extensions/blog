@@ -8,6 +8,8 @@ use yii\base\Module;
 use Yii\Blog\ActiveRecord\Category;
 use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
 use yii\data\ArrayDataProvider;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 final class CategoryController extends Controller
@@ -33,8 +35,46 @@ final class CategoryController extends Controller
     public function actions(): array
     {
         return [
+            'delete' => [
+                'class' => Delete\DeleteAction::class,
+            ],
+            'disable' => [
+                'class' => Disable\DisableAction::class,
+            ],
+            'enable' => [
+                'class' => Enable\EnableAction::class,
+            ],
             'register' => [
                 'class' => Register\RegisterAction::class,
+            ],
+            'update' => [
+                'class' => Update\UpdateAction::class,
+            ],
+        ];
+    }
+
+    public function behaviors(): array
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['delete', 'disable', 'enable', 'index', 'register', 'update'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'delete' => ['post'],
+                    'disable' => ['post'],
+                    'enable' => ['post'],
+                    'register' => ['post'],
+                    'update' => ['post'],
+                ],
             ],
         ];
     }

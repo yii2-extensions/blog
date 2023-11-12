@@ -15,8 +15,9 @@
         "creocoder/yii2-nested-sets": "0.9.*",
         "php-forge/html": "dev-main",
         "sjaakp/yii2-icon": "^1.0",
+        "yii2-extensions/bootbox": "dev-main",
+        "yii2-extensions/bootstrap5":"dev-main",
         "yii2-extensions/core-library": "dev-main",
-        "yiisoft/yii2-bootstrap5":"^2.0",
         "yiisoft/yii2": "^2.2"
     },
     "require-dev": {
@@ -76,7 +77,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "yiisoft/yii2-composer": true,
-            "yiisoft/config": true
+            "yiisoft/config": true,
+            "composer/installers": true,
+            "oomphinc/composer-installers-extender": true
         }
     },
     "scripts": {

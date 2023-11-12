@@ -5,13 +5,20 @@ declare(strict_types=1);
 use Yii\Blog\UseCase\Category\CategoryController;
 
 return [
-    'app.aliases' => [
-        '@yii-blog' => '@vendor/yii2-extensions/blog',
-        '@yii-blog/migration' => '@yii-blog/src/Framework/Migration',
-    ],
     'app.controllerMap' => [
         'category' => [
             'class' => CategoryController::class,
+        ],
+    ],
+    'app.menu.islogged' => [
+        [
+            'label' => 'Category',
+            'url' => ['/category/index'],
+            'order' => 1,
+            'category' => 'yii.user',
+            'linkOptions' => [
+                'data-method' => 'post',
+            ],
         ],
     ],
     'app.params' => [

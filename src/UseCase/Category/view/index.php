@@ -11,16 +11,18 @@ use PHPForge\Html\P;
 use PHPForge\Html\Span;
 use PHPForge\Html\Tag;
 use sjaakp\icon\Icon;
-use yii\bootstrap5\BootstrapPluginAsset;
+use yii\bootbox\BootboxAsset;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\web\View;
+use yii\grid\GridViewAsset;
 
 /**
  * @var View $this
  */
-BootstrapPluginAsset::register($this);
+BootboxAsset::register($this);
+GridViewAsset::register($this);
 
 $this->title = Yii::t('yii.blog', 'Categories');
 
@@ -42,12 +44,13 @@ $columns = [
                 $value = I::widget()->class('caret');
             }
 
-            return $value .= match ($model->depth > 0) {
-                true => A::widget()
-                    ->class($model->status == 0 ? 'smooth' : '')
-                    ->content($model->title)
-                    ->href(Url::to(['/category/index', 'id' => $model->id])),
-                default => Span::widget()->class($model->status == 0 ? 'smooth' : '')->content($model->title),
+            return $value .= match($model->depth > 0) {
+                true => Span::widget()
+                    ->class($model->status === '0' ? 'text-decoration-line-through' : 'text-primary')
+                    ->content($model->title),
+                default => Span::widget()
+                    ->class($model->status === '0' ? 'text-decoration-line-through' : '')
+                    ->content($model->title),
             };
         },
         'contentOptions' => function ($model) {
@@ -58,7 +61,9 @@ $columns = [
     ],
     [
         'attribute' => 'description',
-        'contentOptions' => ['style' => 'text-align: justify;'],
+        'contentOptions' => static fn(stdClass $model) => $model->status === '0'
+            ? ['class' => 'text-decoration-line-through', 'style' => 'text-align: justify;']
+            : ['style' => 'text-align: justify;'],
         'label' => Yii::t('yii.blog', 'Description'),
         'headerOptions' => ['style' => 'min-width: 640px;width: 640px;'],
     ],
@@ -68,44 +73,70 @@ $columns = [
         'header' => Yii::t('yii.blog', 'Actions'),
         'headerOptions' => ['class' => 'text-center'],
         'buttons' => [
-            'delete' => function ($url) {
+            'delete' => function (string $url, stdClass $model) {
                 return A::widget()
                     ->class('border-0 fa-stack text-danger')
                     ->content(
                         Icon::renderIcon('solid', 'circle', ['class' => 'fa-stack-2x']),
                         Icon::renderIcon('solid', 'trash', ['class' => 'fa-stack-1x fa-inverse']),
                     )
-                    ->href($url)
+                    ->dataAttributes(
+                        [
+                            'method' => 'POST',
+                            'confirm' => Yii::t('yii.blog', 'Are you sure to delete this user?'),
+                        ],
+                    )
+                    ->href(Url::to(['/category/delete', 'slug' => $model->slug]))
                     ->title(Yii::t('yii.blog', 'Delete'))
                     ->render();
             },
-            'update' => function ($url) {
+            'status' => static function (string $url, stdClass $model): string {
+                return match ($model->status) {
+                    '1' => A::widget()
+                        ->class('border-0 fa-stack text-danger')
+                        ->content(
+                            Icon::renderIcon('solid', 'circle', ['class' => 'fa-stack-2x']),
+                            Icon::renderIcon('solid', 'eye-slash', ['class' => 'fa-stack-1x fa-inverse']),
+                        )
+                        ->dataAttributes(
+                            [
+                                'method' => 'POST',
+                                'confirm' => Yii::t('yii.blog', 'Are you sure to disable this category?'),
+                            ],
+                        )
+                        ->href(Url::to(['/category/disable', 'slug' => $model->slug]))
+                        ->title(Yii::t('yii.blog', 'Disable category'))
+                        ->render(),
+                    default => A::widget()
+                        ->class('border-0 fa-stack text-success')
+                        ->content(
+                            Icon::renderIcon('solid', 'circle', ['class' => 'fa-stack-2x']),
+                            Icon::renderIcon('solid', 'eye', ['class' => 'fa-stack-1x fa-inverse']),
+                        )
+                        ->dataAttributes(
+                            [
+                                'method' => 'POST',
+                                'confirm' => Yii::t('yii.blog', 'Are you sure to enable this category?'),
+                            ],
+                        )
+                        ->href(Url::to(['/category/enable', 'slug' => $model->slug]))
+                        ->title(Yii::t('yii.blog', 'Enable category'))
+                        ->render(),
+                };
+            },
+            'update' => static function (string $url, stdClass $model) {
                 return A::widget()
                     ->class('border-0 fa-stack text-primary')
                     ->content(
                         Icon::renderIcon('solid', 'circle', ['class' => 'fa-stack-2x']),
                         Icon::renderIcon('solid', 'pen-to-square', ['class' => 'fa-stack-1x fa-inverse']),
                     )
-                    ->href($url)
+                    ->href(Url::to(['/category/update', 'slug' => $model->slug]))
                     ->title(Yii::t('yii.blog', 'Update'))
                     ->render();
             },
-            'off' => static function (string $url, stdClass $model): string {
-                return match ($model->status) {
-                    '1' => A::widget()
-                        ->class('border-0 fa-stack text-dark-emphasis')
-                        ->content(
-                            Icon::renderIcon('solid', 'circle', ['class' => 'fa-stack-2x']),
-                            Icon::renderIcon('solid', 'eye-slash', ['class' => 'fa-stack-1x fa-inverse']),
-                        )
-                        ->href($url)
-                        ->title(Yii::t('yii.blog', 'Turn off'))
-                        ->render(),
-                    default => '',
-                };
-            },
         ],
-        'template' => '{update} {delete} {off}',
+        'template' => '{update} {delete} {status}',
     ],
     [
         'class' => ActionColumn::class,
@@ -168,6 +199,9 @@ $columns = [
                                     'linkOptions' => ['class' => 'page-link'],
                                     'options' => ['class' => 'pagination float-end ml-auto mb-5'],
                                 ],
+                                'rowOptions' => function ($model) {
+                                    return $model->depth == 0 ? ['class' => 'fw-bold'] : [];
+                                },
                                 'tableOptions' => ['class' => 'table table-borderless'],
                             ],
                         ),

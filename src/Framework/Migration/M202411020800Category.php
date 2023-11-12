@@ -22,7 +22,7 @@ final class M202411020800Category extends Migration
                 'lft' => $this->integer(),
                 'rgt' => $this->integer(),
                 'depth' => $this->integer(),
-                'status' => $this->boolean()->defaultValue(1)
+                'status' => $this->integer()->defaultValue(1),
             ],
             $this->tableOptions,
         );
