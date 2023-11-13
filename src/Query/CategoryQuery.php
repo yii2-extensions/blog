@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Yii\Blog\Query;
 
-use creocoder\nestedsets\NestedSetsQueryBehavior;
+use yii\behavior\nested\sets\NestedSetsQueryBehavior;
 use yii\db\ActiveQuery;
 
 final class CategoryQuery extends ActiveQuery

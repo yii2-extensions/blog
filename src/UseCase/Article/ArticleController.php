@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\UseCase\Category;
+namespace Yii\Blog\UseCase\Article;
 
 use yii\base\Module;
 use Yii\Blog\ActiveRecord\Category;
