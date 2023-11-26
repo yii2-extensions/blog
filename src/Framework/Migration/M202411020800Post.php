@@ -20,7 +20,7 @@ final class M202411020800Post extends Migration
                 'content_short' => $this->string(1024),
                 'image_file' => $this->string(128),
                 'slug' => $this->string(128),
-                'time' => $this->integer()->notNull(),
+                'date' => $this->integer(),
                 'views' => $this->integer()->defaultValue(0),
                 'lang' => $this->string(2)->notNull()->defaultValue('en'),
                 'status' => $this->integer()->defaultValue(0),

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Yii\Blog\ActiveRecord;
 
-use yii\behavior\nested\sets\NestedSetsBehavior;
+use Yii2\Extensions\NestedSets\NestedSetsBehavior;
 use yii\behaviors\SluggableBehavior;
 use Yii\Blog\BlogModule;
 use Yii\Blog\Framework\Behavior\SortableBehavior;

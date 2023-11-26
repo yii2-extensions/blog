@@ -9,10 +9,11 @@ use PHPForge\Html\Helper\Encode;
 use PHPForge\Html\P;
 use PHPForge\Html\Select;
 use PHPForge\Html\Tag;
+use Yii2\Extensions\FilePond\FilePond;
 use Yii\Blog\BlogModule;
 use Yii\Blog\UseCase\Category\CategoryForm;
-use Yii\Blog\Widget\Seo\SeoForm;
-use Yii\Blog\Widget\Seo\SeoWidget;
+use Yii\Blog\UseCase\Seo\SeoForm;
+use Yii\Blog\UseCase\Seo\SeoWidget;
 use yii\bootstrap5\ActiveForm;
 use yii\web\View;
 
@@ -20,6 +21,7 @@ use yii\web\View;
  * @var BlogModule $blogModule
  * @var CategoryForm $formModel
  * @var string|null $id
+ * @var string|null $imageFile
  * @var array $nodeTree
  * @var SeoForm $seoForm
  * @var string $title
@@ -30,7 +32,7 @@ $tabInput = 1;
 ?>
 <?= Div::widget()->class('container mt-3')->begin() ?>
     <?= Div::widget()->class('row align-items-center justify-content-center')->begin() ?>
-        <?= Div::widget()->class('col-md-5 col-sm-12')->begin() ?>
+        <?= Div::widget()->class('col-md-7 col-sm-12')->begin() ?>
             <?=
                 Div::widget()
                     ->class('bg-body-tertiary shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500')
@@ -84,7 +86,6 @@ $tabInput = 1;
                                 ],
                             )
                     ?>
-                    <?= $form->field($formModel, 'image_file')->fileInput() ?>
                     <?=
                         $form
                             ->field($formModel, 'slug')
@@ -96,6 +97,19 @@ $tabInput = 1;
                                 ],
                             )
                     ?>
+                    <?=
+                        $form
+                            ->field($formModel, 'image_file')
+                            ->widget(
+                                FilePond::class,
+                                [
+                                    'loadFileDefault' => $imageFile,
+                                    'imagePreviewHeight' => 170,
+                                    'imageCropAspectRatio' => '1:1',
+                                ],
+                            )
+                    ?>
+
                     <?= SeoWidget::widget(['__construct()' => [$form, $blogModule, $seoForm, $tabInput]]) ?>
                     <?=
                         Div::widget()

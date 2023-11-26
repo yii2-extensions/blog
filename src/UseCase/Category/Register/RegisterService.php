@@ -5,15 +5,19 @@ declare(strict_types=1);
 namespace Yii\Blog\UseCase\Category\Register;
 
 use RuntimeException;
+use Yii2\Extensions\FilePond\FileProcessing;
+use Yii;
 use Yii\Blog\ActiveRecord\Category;
 use Yii\Blog\UseCase\Category\CategoryForm;
 use Yii\CoreLibrary\Repository\FinderRepository;
+use Yii\CoreLibrary\Repository\PersistenceRepository;
 
 final class RegisterService
 {
     public function __construct(
         private readonly Category $category,
         private readonly FinderRepository $finderRepository,
+        private readonly PersistenceRepository $persistenceRepository,
     ) {
     }
 
@@ -22,6 +26,9 @@ final class RegisterService
         if ($this->category->getIsNewRecord() === false) {
             throw new RuntimeException('Calling "' . __CLASS__ . '::run()" on existing category.');
         }
+
+        $imageFile = is_array($categoryForm->image_file) ? $categoryForm->image_file : [];
+        $categoryForm->image_file = '';
 
         $this->category->setScenario('register');
         $this->category->setAttributes($categoryForm->getAttributes(), false);
@@ -36,12 +43,28 @@ final class RegisterService
             $result = $this->category->prependTo($parentCategory);
             $categoryForm->id = $this->category->id;
 
+            $this->addImage($imageFile);
+
             return $result;
         }
 
         $result = $this->category->makeRoot();
         $categoryForm->id = $this->category->id;
 
+        $this->addImage($imageFile);
+
         return $result;
+    }
+
+    private function addImage(array $imageFile): void
+    {
+        $this->category->image_file = FileProcessing::saveWithReturningFile(
+            $imageFile,
+            Yii::getAlias('@uploads'),
+            "category{$this->category->id}",
+            false,
+        );
+
+        $this->persistenceRepository->update($this->category);
     }
 }

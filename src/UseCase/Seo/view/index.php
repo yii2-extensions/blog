@@ -5,7 +5,7 @@ declare(strict_types=1);
 use PHPForge\Html\A;
 use PHPForge\Html\P;
 use PHPForge\Html\Div;
-use yii\bootstrap5\BootstrapPluginAsset;
+use Yii2\Asset\BootstrapPluginAsset;
 
 /**
  * @var \yii\web\View $this

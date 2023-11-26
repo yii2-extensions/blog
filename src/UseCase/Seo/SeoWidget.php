@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\Widget\Seo;
+namespace Yii\Blog\UseCase\Seo;
 
 use yii\base\Widget;
 use Yii\Blog\BlogModule;
-use Yii\Blog\Widget\Seo\SeoForm;
 use yii\bootstrap5\ActiveForm;
 
 final class SeoWidget extends Widget

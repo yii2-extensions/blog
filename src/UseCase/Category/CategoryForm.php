@@ -14,7 +14,7 @@ final class CategoryForm extends Model
     public int|null $id = null;
     public string $title = '';
     public string $description = '';
-    public string $image_file = '';
+    public array|string|null $image_file = null;
     public string $slug = '';
     public int|null $status = null;
     public string $parent = '';
@@ -32,7 +32,7 @@ final class CategoryForm extends Model
         return [
             'title' => Yii::t('yii.blog', 'Title'),
             'description' => Yii::t('yii.blog', 'Description'),
-            'image_file' => Yii::t('yii.blog', 'Image'),
+            'image_file' => '',
             'slug' => Yii::t('yii.blog', 'Slug'),
             'tagNames' => Yii::t('yii.blog', 'Tags'),
         ];
@@ -52,10 +52,10 @@ final class CategoryForm extends Model
                 'when' => fn (): bool => $this->action === 'register',
             ],
             ['description', 'string', 'max' => 1024],
-            ['image_file', 'image'],
+            ['image_file', 'default', 'value' => ''],
+            ['slug', 'trim'],
             ['slug', 'string', 'max' => 128],
             ['parent', 'string'],
-            ['status', 'integer'],
             [
                 'status',
                 'default',

@@ -10,8 +10,8 @@ use Yii\Blog\ActiveRecord\Category;
 use Yii\Blog\BlogModule;
 use Yii\Blog\UseCase\Category\CategoryEvent;
 use Yii\Blog\UseCase\Category\CategoryService;
-use Yii\Blog\Widget\Seo\SeoForm;
-use Yii\Blog\Widget\Seo\SeoService;
+use Yii\Blog\UseCase\Seo\SeoForm;
+use Yii\Blog\UseCase\Seo\SeoService;
 use Yii\CoreLibrary\Validator\AjaxValidator;
 use yii\db\Connection;
 use yii\web\Controller;
@@ -59,12 +59,13 @@ final class RegisterAction extends Action
         }
 
         return $this->controller->render(
-            'crud',
+            '_form',
             [
                 'blogModule' => $this->blogModule,
                 'buttonTitle' => Yii::t('yii.blog', 'Register'),
                 'formModel' => $categoryForm,
                 'id' => $id,
+                'imageFile' => '',
                 'nodeTree' => $this->categoryService->buildNodeTree(),
                 'seoForm' => $seoForm,
                 'title' => Yii::t('yii.blog', 'Register category'),

@@ -14,11 +14,17 @@
         "php": ">=8.1",
         "php-forge/html": "dev-main",
         "sjaakp/yii2-icon": "^1.0",
-        "yii2-extensions/bootbox": "dev-main",
+        "vova07/yii2-imperavi-widget": "*",
+        "yii2-extensions/asset-bootbox": "dev-main",
+        "yii2-extensions/asset-bootstrap5": "dev-main",
         "yii2-extensions/bootstrap5":"dev-main",
         "yii2-extensions/core-library": "dev-main",
+        "yii2-extensions/datetime-picker": "dev-main",
+        "yii2-extensions/filepond": "dev-main",
         "yii2-extensions/nested-sets-behavior": "dev-main",
-        "yiisoft/yii2": "dev-add-tests-boolean-pgsql"
+        "yii2-extensions/selectize": "dev-main",
+        "yii2-extensions/summernote": "dev-main",
+        "yiisoft/yii2": "^2.2"
     },
     "require-dev": {
         "maglnet/composer-require-checker": "^4.6",
@@ -94,8 +100,8 @@
             "url": "https://asset-packagist.org"
         },
         {
-            "type": "github",
-            "url": "https://github.com/terabytesoftw/yii2"
+            "type": "path",
+            "url": "../datetime-picker"
         }
     ]
 }

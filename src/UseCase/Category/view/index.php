@@ -11,12 +11,12 @@ use PHPForge\Html\P;
 use PHPForge\Html\Span;
 use PHPForge\Html\Tag;
 use sjaakp\icon\Icon;
-use yii\bootbox\BootboxAsset;
+use Yii2\Asset\BootboxAsset;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\grid\GridViewAsset;
 use yii\helpers\Url;
 use yii\web\View;
-use yii\grid\GridViewAsset;
 
 /**
  * @var View $this

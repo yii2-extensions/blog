@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\Widget\Seo;
+namespace Yii\Blog\UseCase\Seo;
 
 use Yii;
 use yii\base\Model;

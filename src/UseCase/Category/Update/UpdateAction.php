@@ -10,7 +10,7 @@ use Yii\Blog\ActiveRecord\Category;
 use Yii\Blog\BlogModule;
 use Yii\Blog\UseCase\Category\CategoryEvent;
 use Yii\Blog\UseCase\Category\CategoryService;
-use Yii\Blog\Widget\Seo\SeoForm;
+use Yii\Blog\UseCase\Seo\SeoForm;
 use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
 use Yii\CoreLibrary\Repository\PersistenceRepository;
 use Yii\CoreLibrary\Validator\AjaxValidator;
@@ -55,6 +55,9 @@ final class UpdateAction extends Action
         $this->trigger(CategoryEvent::BEFORE_UPDATE, $registerEvent);
 
         $categoryForm = new $this->controller->formModelClass($this->blogModule, $this->id);
+
+        $categoryForm->id = $id;
+
         $categoryForm->setAttributes($category->getAttributes());
 
         $seoForm = new SeoForm();
@@ -78,12 +81,15 @@ final class UpdateAction extends Action
         }
 
         return $this->controller->render(
-            'crud',
+            '_form',
             [
                 'blogModule' => $this->blogModule,
                 'buttonTitle' => Yii::t('yii.blog', 'Update'),
                 'formModel' => $categoryForm,
                 'id' => $category->id === $category->tree ? null : $category->tree,
+                'imageFile' => $category->image_file !== ''
+                    ? '/uploads' . '/' . $category->image_file
+                    : '',
                 'nodeTree' => $this->categoryService->buildNodeTree(),
                 'seoForm' => $seoForm,
                 'title' => Yii::t('yii.blog', 'Update category'),
