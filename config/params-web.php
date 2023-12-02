@@ -25,10 +25,10 @@ return [
     'app.params' => [
         'app.menu.isguest' => [
             [
-                'label' => 'Blog',
-                'url' => ['/blog/index'],
-                'order' => 3,
-                'category' => 'yii.blog',
+                //'label' => 'Blog',
+                //'url' => ['/blog/index'],
+                //'order' => 3,
+                //'category' => 'yii.blog',
             ],
         ],
         'app.menu.islogged' => [

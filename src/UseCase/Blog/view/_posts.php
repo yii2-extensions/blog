@@ -26,14 +26,6 @@ use yii\web\View;
                     Div::widget()
                         ->class('post-header mb-5 text-center')
                         ->content(
-                            Div::widget()
-                                ->class('meta-cat')
-                                ->content(
-                                    A::widget()
-                                        ->class('post-category font-extra text-color text-uppercase font-sm letter-spacing-1')
-                                        ->href('#')
-                                        ->content($post->category->title)
-                                ),
                             H::widget()->class('post-title mt-2')->content($post->title)->tagName('h2'),
                             Div::widget()
                                 ->class('fw-bold post-meta')
