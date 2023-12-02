@@ -27,7 +27,7 @@
         "yii2-extensions/nested-sets-behavior": "dev-main",
         "yii2-extensions/selectize": "dev-main",
         "yii2-extensions/summernote": "dev-main",
-        "yiisoft/arrays": "^3.0",
+        "yiisoft/strings": "^2.3",
         "yiisoft/yii2": "^2.2"
 
     },
