@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Yii\Blog\UseCase\Category;
 
-use Yii\Blog\ActiveRecord\Category;
+use Yii\Blog\Domain\Category\CategoryInterface;
+use Yii\Blog\Domain\Category\CategoryQuery;
 use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
 
 final class CategoryService
 {
     public function __construct(
-        private readonly Category $category,
+        private readonly CategoryInterface $category,
         private readonly FinderRepositoryInterface $finderRepository
     ) {
     }
@@ -32,7 +33,7 @@ final class CategoryService
             $node->parent = '';
 
             foreach ($flat as $temp) {
-                if ($temp->depth == $node->depth - 1) {
+                if ($temp->depth === $node->depth - 1) {
                     $node->parent = $temp->id;
                     break;
                 }
@@ -43,11 +44,11 @@ final class CategoryService
             $flat[$id] = $node;
         }
 
-        foreach ($flat as &$node) {
+        foreach ($flat as $node) {
             $node->children = [];
 
             foreach ($flat as $temp) {
-                if ($temp->parent == $node->id) {
+                if ($temp->parent === $node->id) {
                     $node->children[] = $temp->id;
                 }
             }
@@ -60,10 +61,41 @@ final class CategoryService
     {
         $items = [];
 
-        foreach($this->category->find()->roots()->all() as $node) {
+        foreach($this->getNodes() as $node) {
             $items[$node->id] = $node->title;
         }
 
         return $items;
+    }
+
+    public function buildNodeTreeWithDepth(): array
+    {
+        $items = [];
+
+        foreach($this->getNodes() as $node) {
+            $items[$node->id] = $node->title;
+
+            foreach($this->getLeaves() as $leaf) {
+                $items[$leaf->id] = $leaf->title;
+            }
+        }
+
+        return $items;
+    }
+
+    private function getLeaves(): array
+    {
+        /** @var CategoryQuery $categoryQuery */
+        $categoryQuery = $this->finderRepository->find($this->category);
+
+        return $categoryQuery->leaves()->all();
+    }
+
+    private function getNodes(): array
+    {
+        /** @var CategoryQuery $categoryQuery */
+        $categoryQuery = $this->finderRepository->find($this->category);
+
+        return $categoryQuery->roots()->all();
     }
 }

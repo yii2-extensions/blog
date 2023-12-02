@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\ActiveRecord;
+namespace Yii\Blog\Domain\Category;
 
 use Yii2\Extensions\NestedSets\NestedSetsBehavior;
 use yii\behaviors\SluggableBehavior;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Post\Post;
+use Yii\Blog\Domain\Seo\Seo;
 use Yii\Blog\Framework\Behavior\SortableBehavior;
-use Yii\Blog\Query\CategoryQuery;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use Yiisoft\Strings\Inflector;
@@ -17,7 +18,7 @@ use function preg_match;
 use function preg_replace;
 use function strtolower;
 
-final class Category extends ActiveRecord
+final class Category extends ActiveRecord implements CategoryInterface
 {
     public function behaviors(): array
     {
@@ -26,7 +27,7 @@ final class Category extends ActiveRecord
                 'class' => NestedSetsBehavior::class,
                 'treeAttribute' => 'tree',
             ],
-            'sorteable' => SortableBehavior::class,
+            'sortable' => SortableBehavior::class,
             'slug' => [
                 'class' => SluggableBehavior::class,
                 'attribute' => 'title',
@@ -48,7 +49,7 @@ final class Category extends ActiveRecord
 
     public function getPost(): ActiveQuery
     {
-        return $this->hasMany(Post::class, ['category_id' => 'id'])->sortDate();
+        return $this->hasMany(Post::class, ['category_id' => 'id']);
     }
 
     public function getSeo(): ActiveQuery
@@ -58,13 +59,15 @@ final class Category extends ActiveRecord
 
     public function scenarios(): array
     {
-        return array_merge(
-            parent::scenarios(),
-            [
-                'register' => ['title', 'description', 'image_file', 'slug', 'status'],
-                'update' => ['title', 'description', 'image_file', 'slug', 'status'],
-            ],
-        );
+        $attributes = [
+            'title',
+            'description',
+            'image_file',
+            'slug',
+            'status',
+        ];
+
+        return array_merge(parent::scenarios(), ['register' => $attributes, 'update' => $attributes]);
     }
 
     public static function find(): CategoryQuery

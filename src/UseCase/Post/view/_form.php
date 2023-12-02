@@ -7,9 +7,9 @@ use PHPForge\Html\Div;
 use PHPForge\Html\H;
 use PHPForge\Html\Helper\Encode;
 use PHPForge\Html\P;
-use PHPForge\Html\Select;
 use PHPForge\Html\Tag;
 use sjaakp\icon\Icon;
+use Yii2\Asset\Css\FontAwesomeSolidAsset;
 use Yii2\Extensions\DateTimePicker\DateTimePicker;
 use Yii2\Extensions\FilePond\FilePond;
 use Yii2\Extensions\Selectize\Selectize;
@@ -33,6 +33,8 @@ use yii\web\View;
  */
 $this->title = $title;
 $tabInput = 1;
+
+FontAwesomeSolidAsset::register($this);
 ?>
 <?= Div::widget()->class('container mt-3')->begin() ?>
     <?= Div::widget()->class('row align-items-center justify-content-center')->begin() ?>
@@ -104,9 +106,12 @@ $tabInput = 1;
                                     'config' => [
                                         'display' => [
                                             'sideBySide' => true,
+                                            'icons' => [
+                                                'time' => 'fa-solid fa-clock',
+                                            ],
                                         ],
                                         'localization' => [
-                                            'format' => 'yyyy/MM/dd HH:mm:ss',
+                                            'format' => 'yyyy-MM-dd HH:mm:ss',
                                         ],
                                     ],
                                     'floatingLabel' => true,
@@ -152,7 +157,7 @@ $tabInput = 1;
                                 Button::widget()
                                     ->class('btn btn-lg btn-primary btn-block mt-3')
                                     ->content(Yii::t('yii.blog', 'Save'))
-                                    ->name('category-button')
+                                    ->name('post-button')
                                     ->submit()
                                     ->tabIndex(9)
                             )

@@ -6,7 +6,8 @@ namespace Yii\Blog\UseCase\Category\Update;
 
 use Yii2\Extensions\FilePond\FileProcessing;
 use Yii;
-use Yii\Blog\ActiveRecord\Category;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Category\CategoryInterface;
 use Yii\Blog\UseCase\Category\CategoryForm;
 use Yii\Blog\UseCase\Seo\SeoForm;
 use Yii\CoreLibrary\Repository\PersistenceRepository;
@@ -18,7 +19,7 @@ final class UpdateService
     ) {
     }
 
-    public function run(Category $category, CategoryForm $categoryForm, SeoForm $seoForm): bool
+    public function run(CategoryInterface $category, CategoryForm $categoryForm, SeoForm $seoForm): bool
     {
         $categoryForm->image_file = FileProcessing::saveWithReturningFile(
             $categoryForm->image_file,
@@ -27,6 +28,7 @@ final class UpdateService
             false
         );
 
+        /** @var Category $category */
         $category->setScenario('update');
         $category->setAttributes($categoryForm->getAttributes());
 

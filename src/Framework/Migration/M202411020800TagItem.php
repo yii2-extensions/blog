@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Yii\Blog\ActiveRecord\TagItem;
+use Yii\Blog\Domain\Tag\TagItem;
 use Yii\Blog\Framework\Migration\Migration;
 
 final class M202411020800TagItem extends Migration

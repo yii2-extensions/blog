@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\Query;
+namespace Yii\Blog\Domain\Category;
 
 use Yii2\Extensions\NestedSets\NestedSetsQueryBehavior;
 use yii\db\ActiveQuery;

@@ -7,7 +7,8 @@ namespace Yii\Blog\UseCase\Category\Register;
 use RuntimeException;
 use Yii2\Extensions\FilePond\FileProcessing;
 use Yii;
-use Yii\Blog\ActiveRecord\Category;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Category\CategoryInterface;
 use Yii\Blog\UseCase\Category\CategoryForm;
 use Yii\CoreLibrary\Repository\FinderRepository;
 use Yii\CoreLibrary\Repository\PersistenceRepository;
@@ -15,56 +16,56 @@ use Yii\CoreLibrary\Repository\PersistenceRepository;
 final class RegisterService
 {
     public function __construct(
-        private readonly Category $category,
         private readonly FinderRepository $finderRepository,
         private readonly PersistenceRepository $persistenceRepository,
     ) {
     }
 
-    public function run(CategoryForm $categoryForm, string $parent = null): bool
+    public function run(CategoryInterface $category, CategoryForm $categoryForm, string $parent = null): bool
     {
-        if ($this->category->getIsNewRecord() === false) {
+        /** @var Category $category */
+        if ($category->getIsNewRecord() === false) {
             throw new RuntimeException('Calling "' . __CLASS__ . '::run()" on existing category.');
         }
 
         $imageFile = is_array($categoryForm->image_file) ? $categoryForm->image_file : [];
         $categoryForm->image_file = '';
 
-        $this->category->setScenario('register');
-        $this->category->setAttributes($categoryForm->getAttributes(), false);
+        $category->setScenario('register');
+        $category->setAttributes($categoryForm->getAttributes(), false);
 
         if ($parent !== null && $categoryForm->parent === $parent) {
-            $parentCategory = $this->finderRepository->findById($this->category, (int) $parent);
+            $parentCategory = $this->finderRepository->findById($category, (int) $parent);
 
             if ($parentCategory === null) {
                 throw new RuntimeException('Parent category not found.');
             }
 
-            $result = $this->category->prependTo($parentCategory);
-            $categoryForm->id = $this->category->id;
+            $result = $category->prependTo($parentCategory);
+            $categoryForm->id = $category->id;
 
-            $this->addImage($imageFile);
+            $this->addImage($category, $imageFile);
 
             return $result;
         }
 
-        $result = $this->category->makeRoot();
-        $categoryForm->id = $this->category->id;
+        $result = $category->makeRoot();
+        $categoryForm->id = $category->id;
 
-        $this->addImage($imageFile);
+        $this->addImage($category, $imageFile);
 
         return $result;
     }
 
-    private function addImage(array $imageFile): void
+    private function addImage(CategoryInterface $category, array $imageFile): void
     {
-        $this->category->image_file = FileProcessing::saveWithReturningFile(
+        $category->image_file = FileProcessing::saveWithReturningFile(
             $imageFile,
             Yii::getAlias('@uploads'),
-            "category{$this->category->id}",
+            "category{$category->id}",
             false,
         );
 
-        $this->persistenceRepository->update($this->category);
+        $this->persistenceRepository->update($category);
     }
 }

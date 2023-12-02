@@ -2,15 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\ActiveRecord;
+namespace Yii\Blog\Domain\Post;
 
 use yii\behaviors\SluggableBehavior;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Seo\Seo;
+use Yii\Blog\Framework\Behavior\Taggable;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use Yiisoft\Strings\Inflector;
 
-final class Post extends ActiveRecord
+use function preg_match;
+use function preg_replace;
+use function strtolower;
+
+final class Post extends ActiveRecord implements PostInterface
 {
     public function behaviors(): array
     {
@@ -31,34 +38,33 @@ final class Post extends ActiveRecord
                     return $slug;
                 },
             ],
+            'taggable' => Taggable::class,
         ];
     }
 
     public function getCategory(): ActiveQuery
     {
-        return $this->hasOne(Category::class, ['id' => 'category_id'])->sort();
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
-    public function getPhotos(): ActiveQuery
+    public function getSeo(): ActiveQuery
     {
-        return $this->hasMany(Photos::class, ['item_id' => 'id'])->where(['class' => self::className()])->sort();
+        return $this->hasOne(Seo::class, ['item_id' => 'id'])->andWhere(['class' => self::class]);
     }
 
     public function scenarios(): array
     {
-        return array_merge(
-            parent::scenarios(),
-            [
-                'create' => [
-                    'category_id',
-                    'title',
-                    'content',
-                    'content_short',
-                    'date',
-                    'status',
-                ],
-            ],
-        );
+        $attributes = [
+            'category_id',
+            'title',
+            'content',
+            'content_short',
+            'date',
+            'status',
+            'tagNames',
+        ];
+
+        return array_merge(parent::scenarios(), ['create' => $attributes, 'update' => $attributes]);
     }
 
     public static function tableName(): string

@@ -16,7 +16,7 @@ final class SeoWidget extends Widget
         private readonly ActiveForm $form,
         private readonly BlogModule $blogModule,
         private readonly SeoForm $seoForm,
-        private int $tabInput = 1,
+        private readonly int $tabInput = 1,
         $config = []
     ) {
         parent::__construct($config);

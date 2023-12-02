@@ -6,12 +6,14 @@ namespace Yii\Blog\UseCase\Category\Update;
 
 use Yii;
 use yii\base\Action;
-use Yii\Blog\ActiveRecord\Category;
+use yii\base\ExitException;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Category\CategoryInterface;
+use Yii\Blog\Service\ApiService;
 use Yii\Blog\UseCase\Category\CategoryEvent;
 use Yii\Blog\UseCase\Category\CategoryService;
 use Yii\Blog\UseCase\Seo\SeoForm;
-use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
 use Yii\CoreLibrary\Repository\PersistenceRepository;
 use Yii\CoreLibrary\Validator\AjaxValidator;
 use yii\web\Controller;
@@ -24,10 +26,10 @@ final class UpdateAction extends Action
         string $id,
         Controller $controller,
         public readonly AjaxValidator $ajaxValidator,
+        public readonly ApiService $apiService,
         public readonly BlogModule $blogModule,
-        public readonly Category $category,
+        public readonly CategoryInterface $category,
         public readonly CategoryService $categoryService,
-        public readonly FinderRepositoryInterface $finderRepository,
         public readonly PersistenceRepository $persistenceRepository,
         private readonly Request $request,
         private readonly UpdateService $updateService,
@@ -36,12 +38,15 @@ final class UpdateAction extends Action
         parent::__construct($id, $controller, $config);
     }
 
+    /**
+     * @throws ExitException
+     */
     public function run(string $slug = null): string|Response
     {
         /** @var Category $category */
-        $category = $this->finderRepository->findByOneCondition($this->category, ['slug' => $slug]);
-        $id = $category->id ?? null;
+        $category = $this->apiService->getCategoryBySlug($slug);
 
+        $id = $category->id ?? null;
         $registerEvent = new CategoryEvent($id);
 
         if ($category === null) {
@@ -54,7 +59,7 @@ final class UpdateAction extends Action
 
         $this->trigger(CategoryEvent::BEFORE_UPDATE, $registerEvent);
 
-        $categoryForm = new $this->controller->formModelClass($this->blogModule, $this->id);
+        $categoryForm = new $this->controller->formModelClass($this->id);
 
         $categoryForm->id = $id;
 

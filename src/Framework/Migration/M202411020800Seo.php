@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Yii\Blog\ActiveRecord\Seo;
+use Yii\Blog\Domain\Seo\Seo;
 use Yii\Blog\Framework\Migration\Migration;
 
 final class M202411020800Seo extends Migration

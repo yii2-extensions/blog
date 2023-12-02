@@ -10,7 +10,7 @@ use yii\db\Query;
 
 final class SortableBehavior extends Behavior
 {
-    public function events()
+    public function events(): array
     {
         return [
             ActiveRecord::EVENT_BEFORE_INSERT => 'findMaxOrderNum',

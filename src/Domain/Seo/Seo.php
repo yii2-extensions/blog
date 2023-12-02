@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\ActiveRecord;
+namespace Yii\Blog\Domain\Seo;
 
 use yii\db\ActiveRecord;
 
-final class Seo extends ActiveRecord
+final class Seo extends ActiveRecord implements SeoInterface
 {
     public function safeAttributes(): array
     {

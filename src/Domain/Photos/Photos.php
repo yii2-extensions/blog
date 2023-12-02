@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\ActiveRecord;
+namespace Yii\Blog\Domain\Photos;
 
 use yii\db\ActiveRecord;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Yii\Blog\ActiveRecord\Photos;
+use Yii\Blog\Domain\Photos\Photos;
 use Yii\Blog\Framework\Migration\Migration;
 
 final class M202411020800Photos extends Migration

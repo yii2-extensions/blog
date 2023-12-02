@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\ActiveRecord;
+namespace Yii\Blog\Domain\Tag;
 
 use yii\db\ActiveRecord;
 
-final class Tag extends ActiveRecord
+final class Tag extends ActiveRecord implements TagInterface
 {
     public function safeAttributes(): array
     {

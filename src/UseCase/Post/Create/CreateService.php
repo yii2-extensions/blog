@@ -7,55 +7,64 @@ namespace Yii\Blog\UseCase\Post\Create;
 use RuntimeException;
 use Yii2\Extensions\FilePond\FileProcessing;
 use Yii;
-use Yii\Blog\ActiveRecord\Post;
+use Yii\Blog\Domain\Post\Post;
+use Yii\Blog\Domain\Post\PostInterface;
 use Yii\Blog\UseCase\Post\PostForm;
-use Yii\CoreLibrary\Repository\FinderRepository;
 use Yii\CoreLibrary\Repository\PersistenceRepository;
 
 final class CreateService
 {
     public function __construct(
-        private readonly FinderRepository $finderRepository,
         private readonly PersistenceRepository $persistenceRepository,
-        private readonly Post $post,
     ) {
     }
 
-    public function run(PostForm $postForm): bool
+    public function run(PostInterface $post, PostForm $postForm): bool
     {
-        if ($this->post->getIsNewRecord() === false) {
+        /** @var Post $post */
+        if ($post->getIsNewRecord() === false) {
             throw new RuntimeException('Calling "' . __CLASS__ . '::run()" on existing post.');
         }
 
         $image_file = $postForm->image_file;
         $postForm->image_file = '';
 
-        $this->post->setScenario('create');
-        $this->post->setAttributes($postForm->getAttributes(), false);
+        $post->setScenario('create');
+        $post->setAttributes($postForm->getAttributes(), false);
 
-        if (strtotime($this->post->date) !== false) {
-            $this->post->date = (string) strtotime($this->post->date);
+        if (strtotime($post->date) !== false) {
+            $post->date = strtotime($post->date);
         }
 
-        if ($this->persistenceRepository->save($this->post) === false) {
+        $post->tagNames = $postForm->tagNames;
+
+        $result = $this->persistenceRepository->save($post);
+
+        $postForm->id = $post->id;
+
+        if ($result === false) {
             return false;
         }
 
-        $this->post->image_file = $this->addImage($image_file);
+        if ($image_file !== null && $image_file !== '') {
+            $post->image_file = $this->addImage($post, $image_file);
 
-        return $this->persistenceRepository->update($this->post);
+            return $this->persistenceRepository->update($post);
+        }
+
+        return true;
     }
 
-    private function addImage(mixed $imageFile): string
+    private function addImage(PostInterface $post, mixed $imageFile): string
     {
-        if ($imageFile === null) {
+        if ($imageFile === null || $imageFile === '') {
             return '';
         }
 
         return FileProcessing::saveWithReturningFile(
             $imageFile,
             Yii::getAlias('@uploads'),
-            "post{$this->post->id}",
+            "post{$post->id}",
             false,
         );
     }

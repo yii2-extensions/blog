@@ -24,7 +24,7 @@ class Migration extends \yii\db\Migration
 
     public function hasForeingKey(string $tableName, string $name): bool
     {
-        return $this->db->getTableSchema($tableName, true)->getForeignKey($name) !== null;
+        return $this->db->getTableSchema($tableName, true)?->getForeignKey($name) !== null;
     }
 
     public function hasTable(string $tableName): bool

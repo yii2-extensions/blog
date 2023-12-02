@@ -17,6 +17,7 @@
         "vova07/yii2-imperavi-widget": "*",
         "yii2-extensions/asset-bootbox": "dev-main",
         "yii2-extensions/asset-bootstrap5": "dev-main",
+        "yii2-extensions/asset-fontawesome": "dev-main",
         "yii2-extensions/bootstrap5":"dev-main",
         "yii2-extensions/core-library": "dev-main",
         "yii2-extensions/datetime-picker": "dev-main",

@@ -6,9 +6,8 @@ namespace Yii\Blog\UseCase\Post;
 
 use Yii;
 use yii\base\Model;
-use Yii\Blog\ActiveRecord\Category;
-use Yii\Blog\ActiveRecord\Post;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Category\Category;
 
 final class PostForm extends Model
 {
@@ -23,14 +22,6 @@ final class PostForm extends Model
     public string $lang = '';
     public int|null $status = null;
     public string $tagNames = '';
-
-    public function __construct(
-        private readonly BlogModule $blogModule,
-        private readonly string $action,
-        array $config = [],
-    ) {
-        parent::__construct($config);
-    }
 
     public function attributeLabels(): array
     {
@@ -62,12 +53,6 @@ final class PostForm extends Model
             ['title', 'required'],
             ['title', 'trim'],
             ['title', 'string', 'max' => 128],
-            [
-                'title',
-                'unique',
-                'targetClass' => Post::class,
-                'message' => Yii::t('yii.blog', 'This title has already been taken.'),
-            ],
             ['content_short' , 'required'],
             ['content_short' , 'trim'],
             ['content_short' , 'string', 'max' => 1024],
@@ -82,6 +67,7 @@ final class PostForm extends Model
                 'default',
                 'value' => BlogModule::STATUS_ACTIVE,
             ],
+            ['tagNames', 'safe'],
             ['image_file', 'default', 'value' => ''],
             ['lang', 'default', 'value' => 'en'],
         ];

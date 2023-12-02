@@ -19,6 +19,7 @@ use yii\helpers\Url;
 use yii\web\View;
 
 /**
+ * @var stdClass $dataProvider
  * @var View $this
  */
 BootboxAsset::register($this);
@@ -37,10 +38,10 @@ $columns = [
         'format' => 'html',
         'label' => Yii::t('yii.blog', 'Title'),
         'headerOptions' => ['style' => 'min-width: 200px;'],
-        'value' => static function ($model) {
+        'value' => static function ($model): string {
             $value = '';
 
-            if (\count($model->children)) {
+            if (count($model->children)) {
                 $value = I::widget()->class('caret');
             }
 
@@ -53,15 +54,12 @@ $columns = [
                     ->content($model->title),
             };
         },
-        'contentOptions' => function ($model) {
-            return $model->depth > 0
-                ? ['class' => 'text-nowrap ps-4']
-                : ['class' => 'text-nowrap'];
-        },
+        'contentOptions' => static fn ($model): array => $model->depth > 0
+            ? ['class' => 'text-nowrap ps-4'] : ['class' => 'text-nowrap'],
     ],
     [
         'attribute' => 'description',
-        'contentOptions' => static fn(stdClass $model) => $model->status === '0'
+        'contentOptions' => static fn(stdClass $model): array => $model->status === '0'
             ? ['class' => 'text-decoration-line-through', 'style' => 'text-align: justify;']
             : ['style' => 'text-align: justify;'],
         'label' => Yii::t('yii.blog', 'Description'),
@@ -73,7 +71,7 @@ $columns = [
         'header' => Yii::t('yii.blog', 'Actions'),
         'headerOptions' => ['class' => 'text-center'],
         'buttons' => [
-            'delete' => function (string $url, stdClass $model) {
+            'delete' => static function (string $url, stdClass $model): string {
                 return A::widget()
                     ->class('border-0 fa-stack text-danger')
                     ->content(
@@ -124,7 +122,7 @@ $columns = [
                         ->render(),
                 };
             },
-            'update' => static function (string $url, stdClass $model) {
+            'update' => static function (string $url, stdClass $model): string {
                 return A::widget()
                     ->class('border-0 fa-stack text-primary')
                     ->content(
@@ -144,7 +142,7 @@ $columns = [
         'header' => Yii::t('yii.blog', 'Subcategory'),
         'headerOptions' => ['class' => 'text-center'],
         'buttons' => [
-            'register' => function (string $url, stdClass $model) {
+            'register' => static function (string $url, stdClass $model): string {
                 return match ($model->depth) {
                     '0' => A::widget()
                         ->class('border-0 fa-stack text-success')
@@ -199,9 +197,8 @@ $columns = [
                                     'linkOptions' => ['class' => 'page-link'],
                                     'options' => ['class' => 'pagination float-end ml-auto mb-5'],
                                 ],
-                                'rowOptions' => function ($model) {
-                                    return $model->depth == 0 ? ['class' => 'fw-bold'] : [];
-                                },
+                                'rowOptions' => static fn ($model): array => $model->depth === 0
+                                    ? ['class' => 'fw-bold'] : [],
                                 'tableOptions' => ['class' => 'table table-borderless'],
                             ],
                         ),

@@ -5,10 +5,14 @@ declare(strict_types=1);
 use PHPForge\Html\A;
 use PHPForge\Html\P;
 use PHPForge\Html\Div;
+use yii\web\View;
 use Yii2\Asset\BootstrapPluginAsset;
 
 /**
- * @var \yii\web\View $this
+ * @var ActiveForm $form
+ * @var SeoForm $formModel
+ * @var int $tabInput
+ * @var View $this
  */
 BootstrapPluginAsset::register($this);
 ?>

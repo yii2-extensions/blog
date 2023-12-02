@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Yii\Blog\ActiveRecord\Category;
-use Yii\Blog\ActiveRecord\Post;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Post\Post;
 use Yii\Blog\Framework\Migration\Migration;
 
 final class M202411020800Post extends Migration

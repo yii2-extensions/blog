@@ -6,8 +6,8 @@ namespace Yii\Blog\UseCase\Category;
 
 use Yii;
 use yii\base\Model;
-use Yii\Blog\ActiveRecord\Category;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Category\Category;
 
 final class CategoryForm extends Model
 {
@@ -19,11 +19,8 @@ final class CategoryForm extends Model
     public int|null $status = null;
     public string $parent = '';
 
-    public function __construct(
-        private readonly BlogModule $blogModule,
-        private readonly string $action,
-        array $config = [],
-    ) {
+    public function __construct(private readonly string $action, array $config = [])
+    {
         parent::__construct($config);
     }
 

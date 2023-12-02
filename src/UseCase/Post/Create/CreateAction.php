@@ -6,15 +6,16 @@ namespace Yii\Blog\UseCase\Post\Create;
 
 use Yii;
 use yii\base\Action;
-use Yii\Blog\ActiveRecord\Post;
+use yii\base\ExitException;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Post\PostInterface;
+use Yii\Blog\Domain\Seo\SeoInterface;
 use Yii\Blog\UseCase\Category\CategoryService;
 use Yii\Blog\UseCase\Post\PostEvent;
 use Yii\Blog\UseCase\Seo\SeoForm;
+use Yii\Blog\UseCase\Seo\SeoService;
 use Yii\CoreLibrary\Validator\AjaxValidator;
-use yii\db\Connection;
 use yii\web\Controller;
-use yii\web\CookieCollection;
 use yii\web\Request;
 use yii\web\Response;
 
@@ -27,13 +28,18 @@ final class CreateAction extends Action
         private readonly BlogModule $blogModule,
         private readonly CategoryService $categoryService,
         private readonly CreateService $createService,
-        private readonly Connection $db,
+        private readonly PostInterface $post,
         private readonly Request $request,
+        private readonly SeoInterface $seo,
+        private readonly SeoService $seoService,
         array $config = []
     ) {
         parent::__construct($id, $controller, $config);
     }
 
+    /**
+     * @throws ExitException
+     */
     public function run(): string|Response
     {
         $postForm = new $this->controller->formModelClass(
@@ -53,7 +59,8 @@ final class CreateAction extends Action
             $postForm->validate() &&
             $seoForm->load($this->request->post()) &&
             $seoForm->validate() &&
-            $this->createService->run($postForm)
+            $this->createService->run($this->post, $postForm) &&
+            $this->seoService->run($this->seo, $seoForm, PostInterface::class, $postForm->id)
         ) {
             $this->trigger(PostEvent::AFTER_CREATE, $createEvent);
 
@@ -66,7 +73,7 @@ final class CreateAction extends Action
                 'blogModule' => $this->blogModule,
                 'formModel' => $postForm,
                 'imageFile' => '',
-                'nodeTree' => $this->categoryService->buildNodeTree(),
+                'nodeTree' => $this->categoryService->buildNodeTreeWithDepth(),
                 'seoForm' => $seoForm,
                 'title' => Yii::t('yii.blog', 'Create post'),
             ],

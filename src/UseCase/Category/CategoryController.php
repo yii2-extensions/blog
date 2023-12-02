@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Yii\Blog\UseCase\Category;
 
-use yii\base\Module;
-use Yii\Blog\ActiveRecord\Category;
-use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -19,17 +16,6 @@ final class CategoryController extends Controller
     public string $formModelClass = CategoryForm::class;
     public $layout = '@resource/layout/main';
     public string $viewPath = __DIR__ . '/view';
-
-    public function __construct(
-        $id,
-        Module $module,
-        private readonly Category $category,
-        private readonly CategoryService $categoryService,
-        private readonly FinderRepositoryInterface $finderRepository,
-        array $config = []
-    ) {
-        parent::__construct($id, $module, $config);
-    }
 
     public function actions(): array
     {

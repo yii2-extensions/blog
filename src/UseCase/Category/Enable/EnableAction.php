@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Yii\Blog\UseCase\Category\Enable;
 
 use yii\base\Action;
-use Yii\Blog\ActiveRecord\Category;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Service\ApiService;
 use Yii\Blog\UseCase\Category\CategoryEvent;
-use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
 use Yii\CoreLibrary\Repository\PersistenceRepositoryInterface;
 use yii\web\Controller;
 use yii\web\Response;
@@ -18,8 +18,7 @@ final class EnableAction extends Action
     public function __construct(
         string $id,
         Controller $controller,
-        private readonly Category $category,
-        private readonly FinderRepositoryInterface $finderRepository,
+        private readonly ApiService $apiService,
         private readonly PersistenceRepositoryInterface $persistenceRepository,
         array $config = []
     ) {
@@ -29,9 +28,9 @@ final class EnableAction extends Action
     public function run(string $slug = null): string|Response
     {
         /** @var Category $category */
-        $category = $this->finderRepository->findByOneCondition($this->category, ['slug' => $slug]);
-        $id = $category->id ?? null;
+        $category = $this->apiService->getCategoryBySlug($slug);
 
+        $id = $category->id ?? null;
         $registerEvent = new CategoryEvent($id);
 
         if ($category === null) {

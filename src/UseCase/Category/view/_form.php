@@ -19,6 +19,7 @@ use yii\web\View;
 
 /**
  * @var BlogModule $blogModule
+ * @var string $buttonTitle
  * @var CategoryForm $formModel
  * @var string|null $id
  * @var string|null $imageFile
@@ -52,7 +53,7 @@ $tabInput = 1;
                         <?=
                             Select::widget()
                                 ->ariaLabel('Select for parent category')
-                                ->autofocus(true)
+                                ->autofocus()
                                 ->class('form-select mt-2')
                                 ->id('registerform-title')
                                 ->items($nodeTree)
@@ -120,7 +121,7 @@ $tabInput = 1;
                                     ->content($buttonTitle)
                                     ->name('category-button')
                                     ->submit()
-                                    ->tabIndex(9)
+                                    ->tabIndex($tabInput++)
                             )
                     ?>
                 <?php ActiveForm::end() ?>

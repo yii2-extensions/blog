@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Yii\Blog\UseCase\Tag\Collection;
 
 use yii\base\Action;
-use Yii\Blog\ActiveRecord\Tag;
+use Yii\Blog\Domain\Tag\TagInterface;
 use Yii\CoreLibrary\Repository\FinderRepositoryInterface;
 use yii\web\Controller;
 use yii\web\Response;
@@ -16,7 +16,7 @@ final class CollectionAction extends Action
         string $id,
         Controller $controller,
         private readonly FinderRepositoryInterface $finderRepository,
-        private readonly Tag $tag,
+        private readonly TagInterface $tag,
         array $config = []
     ) {
         parent::__construct($id, $controller, $config);

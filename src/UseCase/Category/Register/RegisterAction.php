@@ -6,14 +6,15 @@ namespace Yii\Blog\UseCase\Category\Register;
 
 use Yii;
 use yii\base\Action;
-use Yii\Blog\ActiveRecord\Category;
+use yii\base\ExitException;
 use Yii\Blog\BlogModule;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Seo\SeoInterface;
 use Yii\Blog\UseCase\Category\CategoryEvent;
 use Yii\Blog\UseCase\Category\CategoryService;
 use Yii\Blog\UseCase\Seo\SeoForm;
 use Yii\Blog\UseCase\Seo\SeoService;
 use Yii\CoreLibrary\Validator\AjaxValidator;
-use yii\db\Connection;
 use yii\web\Controller;
 use yii\web\Request;
 use yii\web\Response;
@@ -25,19 +26,23 @@ final class RegisterAction extends Action
         Controller $controller,
         private readonly AjaxValidator $ajaxValidator,
         private readonly BlogModule $blogModule,
-        private readonly Connection $db,
+        private readonly Category $category,
         private readonly CategoryService $categoryService,
         private readonly RegisterService $registerService,
         private readonly Request $request,
+        private readonly SeoInterface $seo,
         private readonly SeoService $seoService,
         array $config = []
     ) {
         parent::__construct($id, $controller, $config);
     }
 
+    /**
+     * @throws ExitException
+     */
     public function run(string $id = null): string|Response
     {
-        $categoryForm = new $this->controller->formModelClass($this->blogModule, $this->id);
+        $categoryForm = new $this->controller->formModelClass($this->id);
         $this->ajaxValidator->validate($categoryForm);
 
         $registerEvent = new CategoryEvent($id);
@@ -50,8 +55,8 @@ final class RegisterAction extends Action
             $seoForm->load($this->request->post()) &&
             $categoryForm->validate() &&
             $seoForm->validate() &&
-            $this->registerService->run($categoryForm, $id) &&
-            $this->seoService->run($seoForm, Category::class, $categoryForm->id)
+            $this->registerService->run($this->category, $categoryForm, $id) &&
+            $this->seoService->run($this->seo, $seoForm, Category::class, $categoryForm->id)
         ) {
             $this->trigger(CategoryEvent::AFTER_REGISTER, $registerEvent);
 

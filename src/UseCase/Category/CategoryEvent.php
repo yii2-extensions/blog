@@ -25,5 +25,6 @@ final class CategoryEvent extends Event
 
     public function __construct(public readonly string|int|null $id = null)
     {
+        parent::__construct();
     }
 }
