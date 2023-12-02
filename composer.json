@@ -12,6 +12,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
+        "ext-filter": "*",
+        "ext-mbstring": "*",
         "php-forge/html": "dev-main",
         "sjaakp/yii2-icon": "^1.0",
         "vova07/yii2-imperavi-widget": "*",
@@ -25,7 +27,9 @@
         "yii2-extensions/nested-sets-behavior": "dev-main",
         "yii2-extensions/selectize": "dev-main",
         "yii2-extensions/summernote": "dev-main",
+        "yiisoft/arrays": "^3.0",
         "yiisoft/yii2": "^2.2"
+
     },
     "require-dev": {
         "maglnet/composer-require-checker": "^4.6",
