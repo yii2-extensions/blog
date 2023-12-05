@@ -54,7 +54,7 @@ final class Category extends ActiveRecord implements CategoryInterface
 
     public function getSeo(): ActiveQuery
     {
-        return $this->hasOne(Seo::class, ['item_id' => 'id'])->andWhere(['class' => self::class]);
+        return $this->hasOne(Seo::class, ['item_id' => 'id'])->andWhere(['class' => CategoryInterface::class]);
     }
 
     public function scenarios(): array
