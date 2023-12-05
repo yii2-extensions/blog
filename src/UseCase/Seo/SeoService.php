@@ -26,6 +26,6 @@ final class SeoService
         $seo->class = $class;
         $seo->item_id = $itemId;
 
-        return $this->persistenceRepository->update($seo);
+        return $this->persistenceRepository->save($seo);
     }
 }

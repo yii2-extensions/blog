@@ -10,10 +10,10 @@ use Yii\Blog\Framework\Validator\EscapeValidator;
 
 final class SeoForm extends Model
 {
-    public string $h1 = '';
-    public string $title = '';
-    public string $keywords = '';
-    public string $description = '';
+    public string|null $h1 = '';
+    public string|null $title = '';
+    public string|null $keywords = '';
+    public string|null $description = '';
 
     public function rules(): array
     {
