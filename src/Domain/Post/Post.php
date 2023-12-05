@@ -49,7 +49,7 @@ final class Post extends ActiveRecord implements PostInterface
 
     public function getSeo(): ActiveQuery
     {
-        return $this->hasOne(Seo::class, ['item_id' => 'id'])->andWhere(['class' => self::class]);
+        return $this->hasOne(Seo::class, ['item_id' => 'id'])->andWhere(['class' => PostInterface::class]);
     }
 
     public function scenarios(): array

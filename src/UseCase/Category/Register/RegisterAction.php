@@ -8,7 +8,7 @@ use Yii;
 use yii\base\Action;
 use yii\base\ExitException;
 use Yii\Blog\BlogModule;
-use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Category\CategoryInterface;
 use Yii\Blog\Domain\Seo\SeoInterface;
 use Yii\Blog\UseCase\Category\CategoryEvent;
 use Yii\Blog\UseCase\Category\CategoryService;
@@ -26,7 +26,7 @@ final class RegisterAction extends Action
         Controller $controller,
         private readonly AjaxValidator $ajaxValidator,
         private readonly BlogModule $blogModule,
-        private readonly Category $category,
+        private readonly CategoryInterface $category,
         private readonly CategoryService $categoryService,
         private readonly RegisterService $registerService,
         private readonly Request $request,
@@ -56,7 +56,7 @@ final class RegisterAction extends Action
             $categoryForm->validate() &&
             $seoForm->validate() &&
             $this->registerService->run($this->category, $categoryForm, $id) &&
-            $this->seoService->run($this->seo, $seoForm, Category::class, $categoryForm->id)
+            $this->seoService->run($this->seo, $seoForm, CategoryInterface::class, $categoryForm->id)
         ) {
             $this->trigger(CategoryEvent::AFTER_REGISTER, $registerEvent);
 
