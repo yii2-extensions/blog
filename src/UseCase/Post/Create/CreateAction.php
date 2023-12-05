@@ -42,10 +42,7 @@ final class CreateAction extends Action
      */
     public function run(): string|Response
     {
-        $postForm = new $this->controller->formModelClass(
-            $this->blogModule,
-            $this->controller->action->id,
-        );
+        $postForm = new $this->controller->formModelClass();
 
         $this->ajaxValidator->validate($postForm);
 
