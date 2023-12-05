@@ -59,7 +59,7 @@ final class UpdateAction extends Action
 
         $this->trigger(PostEvent::BEFORE_UPDATE, $registerEvent);
 
-        $postForm = new $this->controller->formModelClass($this->blogModule, $this->id);
+        $postForm = new $this->controller->formModelClass();
         $postForm->id = $id;
 
         $postForm->setAttributes($post->getAttributes());
