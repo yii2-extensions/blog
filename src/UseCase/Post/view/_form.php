@@ -81,9 +81,22 @@ FontAwesomeSolidAsset::register($this);
                                     'config' => [
                                         'focus' => true,
                                         'height' => 200,
+                                        'lineHeights' => ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
                                         'maxHeight' => null,
                                         'minHeight' => null,
                                         'placeholder' => 'Write here...',
+                                        'toolbar' => [
+                                            ['style', ['style']],
+                                            ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+                                            ['fontsize', ['fontsize']],
+                                            ['fontname', ['fontname']],
+                                            ['color', ['color']],
+                                            ['para', ['ul', 'ol', 'paragraph']],
+                                            ['lineHeights', ['0.5', '1']],
+                                            ['table', ['table']],
+                                            ['insert', ['link', 'picture', 'video']],
+                                            ['view', ['fullscreen', 'codeview', 'help']],
+                                        ],
                                     ],
                                 ]
                             )

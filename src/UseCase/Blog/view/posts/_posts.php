@@ -65,15 +65,4 @@ use yii\web\View;
                     )
             )
     ?>
-<?php endforeach; ?>
-<?=
-    Div::widget()
-        ->class('float-end')
-        ->content(
-            LinkPager::widget(
-                [
-                    'pagination' => $posts->getPagination(),
-                    'options' => ['class' => 'pagination justify-content-center mt-4'],
-                ]
-            )
-        );
+<?php endforeach;

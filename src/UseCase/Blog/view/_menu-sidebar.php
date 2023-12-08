@@ -19,10 +19,10 @@ echo NavBar::widget()
                     ->label('All posts')
                     ->link(Url::to(['/blog/index']))
                     ->iconClass('fa-solid fa-newspaper me-2 d-flex align-items-center fw-600'),
-                //Item::create()
-                //    ->label('Archive')
-                //    ->link(Url::to(['/blog/archive']))
-                //    ->iconClass('fa-solid fa-box-archive me-2 d-flex align-items-center fw-600'),
+                Item::create()
+                    ->label('Archive')
+                    ->link(Url::to(['/blog/archive']))
+                    ->iconClass('fa-solid fa-box-archive me-2 d-flex align-items-center fw-600'),
                 //Item::create()
                 //    ->label('Subscribe')
                 //    ->link(Url::to(['/blog/feed']))

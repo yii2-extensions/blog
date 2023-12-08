@@ -5,11 +5,11 @@ declare(strict_types=1);
 use PHPForge\Html\Div;
 use Yii2\Asset\Css\FontAwesomeAsset;
 use Yii\Blog\Framework\Asset\BlogAsset;
-use yii\data\ActiveDataProvider;
+use yii\db\ActiveRecord;
 use yii\web\View;
 
 /**
- * @var ActiveDataProvider $posts
+ * @var ActiveRecord[] $trendings
  * @var View $this
  */
 BlogAsset::register($this);
@@ -23,8 +23,8 @@ echo Div::widget()
         Div::widget()
             ->class('d-lg-grid content')
             ->content(
-                $this->render('_sidebar'),
-                $this->render('_posts', ['posts' => $posts]),
+                $this->render('../_sidebar'),
+                $this->render('_archive', ['trendings' => $trendings]),
             )
             ->id('content')
     );
