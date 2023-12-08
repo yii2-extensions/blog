@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use PHPForge\Html\Div;
-use Yii2\Asset\Css\FontAwesomeAsset;
 use Yii\Blog\Framework\Asset\BlogAsset;
 use yii\bootstrap5\LinkPager;
 use yii\data\ActiveDataProvider;
@@ -14,7 +13,6 @@ use yii\web\View;
  * @var View $this
  */
 BlogAsset::register($this);
-FontAwesomeAsset::register($this);
 
 $items = [];
 

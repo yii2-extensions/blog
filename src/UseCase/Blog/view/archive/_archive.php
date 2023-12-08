@@ -6,7 +6,6 @@ use PHPForge\Html\Div;
 use PHPForge\Html\H;
 use PHPForge\Html\Span;
 use PHPForge\Html\Tag;
-use Yii2\Asset\Css\FontAwesomeAsset;
 use Yii\Blog\Framework\Asset\BlogAsset;
 use yii\db\ActiveRecord;
 use yii\web\View;
@@ -16,7 +15,6 @@ use yii\web\View;
  * @var View $this
  */
 BlogAsset::register($this);
-FontAwesomeAsset::register($this);
 
 $items = [];
 ?>
