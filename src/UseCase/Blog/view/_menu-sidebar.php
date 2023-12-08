@@ -5,7 +5,15 @@ declare(strict_types=1);
 use PHPForge\Component\Item;
 use PHPForge\Component\Menu;
 use PHPForge\Component\NavBar;
+use Yii2\Asset\Css\FontAwesomeSolidAsset;
 use yii\helpers\Url;
+
+use yii\web\View;
+
+/**
+ * @var View $this
+ */
+FontAwesomeSolidAsset::register($this);
 
 echo NavBar::widget()
     ->class('nav nav-pills justify-content-center flex-lg-column justify-content-lg-start gap-1 sidebar-nav')
