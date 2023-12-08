@@ -8,7 +8,7 @@ use Yii\Blog\UseCase\Post\PostController;
 use Yii\Blog\UseCase\Tag\TagController;
 
 return [
-    'app.controllerMap' => [
+    'web.controllerMap' => [
         'category' => [
             'class' => CategoryController::class,
         ],
@@ -22,7 +22,7 @@ return [
             'class' => TagController::class,
         ],
     ],
-    'app.params' => [
+    'web.params' => [
         'app.menu.islogged' => [
             [
                 'label' => 'Category',
