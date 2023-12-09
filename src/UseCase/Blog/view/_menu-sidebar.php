@@ -24,11 +24,11 @@ echo NavBar::widget()
             ->currentPath(Yii::$app->request->url)
             ->items(
                 Item::create()
-                    ->label('All posts')
+                    ->label(Yii::t('yii.blog', 'All posts'))
                     ->link(Url::to(['/blog/index']))
                     ->iconClass('fa-solid fa-newspaper me-2 d-flex align-items-center fw-600'),
                 Item::create()
-                    ->label('Archive')
+                    ->label(Yii::t('yii.blog', 'Archive'))
                     ->link(Url::to(['/blog/archive']))
                     ->iconClass('fa-solid fa-box-archive me-2 d-flex align-items-center fw-600'),
                 //Item::create()

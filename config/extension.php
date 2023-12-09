@@ -24,7 +24,7 @@ return [
             'translations' => [
                 'yii.blog' => [
                     'class' => PhpMessageSource::class,
-                    'basePath' => '@resource/message',
+                    'basePath' => '@yii-blog/src/Framework/resource/message',
                 ],
             ],
         ],
