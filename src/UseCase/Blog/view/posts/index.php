@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use PHPForge\Html\Div;
-use PHPForge\Html\Helper\Encode;
 use Yii\Blog\Framework\Asset\BlogAsset;
 use yii\bootstrap5\LinkPager;
 use yii\data\ActiveDataProvider;
@@ -16,8 +15,6 @@ use yii\web\View;
 BlogAsset::register($this);
 
 $items = [];
-
-$this->title = Encode::content(Yii::t('yii.blog', 'YiiVerse Blog'));
 
 echo Div::widget()
     ->class('container-xxl mt-5 px-4 px-xxl-2')
