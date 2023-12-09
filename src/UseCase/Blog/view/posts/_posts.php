@@ -5,9 +5,10 @@ declare(strict_types=1);
 use PHPForge\Html\A;
 use PHPForge\Html\Div;
 use PHPForge\Html\H;
+use PHPForge\Html\Helper\Encode;
 use PHPForge\Html\Img;
 use PHPForge\Html\Span;
-use yii\bootstrap5\LinkPager;
+use Yii\Blog\Helper\CardXGenerator;
 use yii\data\ActiveDataProvider;
 use yii\web\View;
 
@@ -18,6 +19,8 @@ use yii\web\View;
 ?>
 
 <?php foreach ($posts->getModels() as $post): ?>
+    <?php $this->title = Encode::content(Yii::t('yii.blog', $post->title)); ?>
+    <?php CardXGenerator::generate((string) $post->id, $post->title) ?>
     <?=
         Div::widget()
             ->class('single-post')
