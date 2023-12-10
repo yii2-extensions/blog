@@ -32,6 +32,29 @@ use yii\web\View;
  * @var View $this
  */
 $this->title = $title;
+
+$configSummerNote = [
+    'config' => [
+        'focus' => true,
+        'height' => 200,
+        'lineHeights' => ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
+        'maxHeight' => null,
+        'minHeight' => null,
+        'placeholder' => 'Write here...',
+        'toolbar' => [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['lineHeights', ['0.5', '1']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    ],
+];
 $tabInput = 1;
 
 FontAwesomeSolidAsset::register($this);
@@ -71,36 +94,8 @@ FontAwesomeSolidAsset::register($this);
                             )
                     ?>
                     <?= $form->field($formModel, 'title') ?>
-                    <?= $form->field($formModel, 'content_short')->textarea() ?>
-                    <?=
-                        $form
-                            ->field($formModel, 'content')
-                            ->widget(
-                                Summernote::class,
-                                [
-                                    'config' => [
-                                        'focus' => true,
-                                        'height' => 200,
-                                        'lineHeights' => ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
-                                        'maxHeight' => null,
-                                        'minHeight' => null,
-                                        'placeholder' => 'Write here...',
-                                        'toolbar' => [
-                                            ['style', ['style']],
-                                            ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
-                                            ['fontsize', ['fontsize']],
-                                            ['fontname', ['fontname']],
-                                            ['color', ['color']],
-                                            ['para', ['ul', 'ol', 'paragraph']],
-                                            ['lineHeights', ['0.5', '1']],
-                                            ['table', ['table']],
-                                            ['insert', ['link', 'picture', 'video']],
-                                            ['view', ['fullscreen', 'codeview', 'help']],
-                                        ],
-                                    ],
-                                ]
-                            )
-                    ?>
+                    <?= $form->field($formModel, 'content_short')->widget(Summernote::class, $configSummerNote) ?>
+                    <?= $form->field($formModel, 'content')->widget(Summernote::class, $configSummerNote) ?>
                     <?= $form->field($formModel, 'slug') ?>
                     <?=
                         $form
