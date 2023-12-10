@@ -21,7 +21,6 @@ BlogAsset::register($this);
 
 $items = [];
 ?>
-
 <?= Div::widget()->class('media mt-5')->begin() ?>
     <?php foreach ($posts->getModels() as $post): ?>
         <?=

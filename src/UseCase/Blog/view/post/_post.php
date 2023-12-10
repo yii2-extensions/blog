@@ -5,11 +5,9 @@ declare(strict_types=1);
 use PHPForge\Html\A;
 use PHPForge\Html\Div;
 use PHPForge\Html\H;
-use PHPForge\Html\Helper\Encode;
 use PHPForge\Html\Img;
 use PHPForge\Html\Span;
 use Yii\Blog\Domain\Post\Post;
-use Yii\Blog\Helper\CardXGenerator;
 use yii\web\View;
 
 /**
@@ -18,8 +16,6 @@ use yii\web\View;
  */
 ?>
 <?= Div::widget()->class('single-post')->begin() ?>
-    <?php $this->title = Encode::content(Yii::t('yii.blog', $post->title)); ?>
-    <?php CardXGenerator::generate((string) $post->id, $post->title) ?>
     <?=
         Div::widget()
             ->class('post-header mb-5 text-center')

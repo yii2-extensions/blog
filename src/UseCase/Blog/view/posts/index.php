@@ -15,6 +15,7 @@ use yii\web\View;
 BlogAsset::register($this);
 
 $items = [];
+$this->title = Yii::t('yii.blog', 'All posts');
 
 echo Div::widget()
     ->class('container-xxl mt-5 px-4 px-xxl-2')
