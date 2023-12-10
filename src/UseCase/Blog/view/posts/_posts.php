@@ -6,16 +6,15 @@ use PHPForge\Html\A;
 use PHPForge\Html\Div;
 use PHPForge\Html\H;
 use PHPForge\Html\Img;
-use PHPForge\Html\P;
 use PHPForge\Html\Span;
 use PHPForge\Html\Tag;
 use Yii\Blog\Framework\Asset\BlogAsset;
-use yii\db\ActiveRecord;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\web\View;
 
 /**
- * @var ActiveRecord[] $trendings
+ * @var ActiveDataProvider $posts
  * @var View $this
  */
 BlogAsset::register($this);

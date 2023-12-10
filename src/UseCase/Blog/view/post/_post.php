@@ -13,7 +13,7 @@ use Yii\Blog\Helper\CardXGenerator;
 use yii\web\View;
 
 /**
- * @var Post $posts
+ * @var Post $post
  * @var View $this
  */
 ?>
