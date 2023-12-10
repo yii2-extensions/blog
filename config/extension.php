@@ -32,7 +32,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'blog/index/page/<page>/per-page/<per-page>' => 'blog/index',
                 'category/delete/<slug>' => 'category/delete',
                 'category/disable/<slug>' => 'category/disable',
                 'category/enable/<slug>' => 'category/enable',

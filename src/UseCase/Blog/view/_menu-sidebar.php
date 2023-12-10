@@ -27,14 +27,6 @@ echo NavBar::widget()
                     ->label(Yii::t('yii.blog', 'All posts'))
                     ->link(Url::to(['/blog/index']))
                     ->iconClass('fa-solid fa-newspaper me-2 d-flex align-items-center fw-600'),
-                Item::create()
-                    ->label(Yii::t('yii.blog', 'Archive'))
-                    ->link(Url::to(['/blog/archive']))
-                    ->iconClass('fa-solid fa-box-archive me-2 d-flex align-items-center fw-600'),
-                //Item::create()
-                //    ->label('Subscribe')
-                //    ->link(Url::to(['/blog/feed']))
-                //    ->iconClass('fa-solid fa-rss me-2 d-flex align-items-center fw-600'),
             )
             ->id('w0-collapse')
             ->linkClass('nav-link d-flex align-items-center fw-600')

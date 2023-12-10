@@ -5,67 +5,58 @@ declare(strict_types=1);
 use PHPForge\Html\A;
 use PHPForge\Html\Div;
 use PHPForge\Html\H;
-use PHPForge\Html\Helper\Encode;
 use PHPForge\Html\Img;
+use PHPForge\Html\P;
 use PHPForge\Html\Span;
-use Yii\Blog\Helper\CardXGenerator;
-use yii\data\ActiveDataProvider;
+use PHPForge\Html\Tag;
+use Yii\Blog\Framework\Asset\BlogAsset;
+use yii\db\ActiveRecord;
+use yii\helpers\Url;
 use yii\web\View;
 
 /**
- * @var ActiveDataProvider $posts
+ * @var ActiveRecord[] $trendings
  * @var View $this
  */
+BlogAsset::register($this);
+
+$items = [];
 ?>
 
-<?php foreach ($posts->getModels() as $post): ?>
-    <?php $this->title = Encode::content(Yii::t('yii.blog', $post->title)); ?>
-    <?php CardXGenerator::generate((string) $post->id, $post->title) ?>
-    <?=
-        Div::widget()
-            ->class('single-post')
-            ->content(
-                Div::widget()
-                    ->class('post-header mb-5 text-center')
-                    ->content(
-                        H::widget()->class('post-title mt-2')->content($post->title)->tagName('h2'),
-                        Div::widget()
-                            ->class('fw-bold post-meta')
-                            ->content(
-                                Span::widget()
-                                    ->class('text-uppercase font-sm letter-spacing-1')
-                                    ->content(
-                                        Yii::$app->formatter->asDate($post->date, 'medium'),
-                                    ),
-                            ),
-                        Div::widget()
-                            ->class('post-featured-image mt-5')
-                            ->content(
-                                Img::widget()
-                                    ->alt('featured-image')
-                                    ->class('img-fluid w-100')
-                                    ->src("/uploads/$post->image_file")
-                            )
-                    ),
-                Div::widget()
-                    ->class('post-body')
-                    ->content(
-                        Div::widget()->class('entry-content')->content($post->content),
-                        Div::widget()
-                            ->class('post-tags')
-                            ->content(
-                                implode(
-                                    ' ',
-                                    array_map(
-                                        static fn ($tag): string => A::widget()
-                                            ->href('#')
-                                            ->content($tag->name)
-                                            ->render(),
-                                        $post->tags,
-                                    )
-                                )
-                            )
-                    )
-            )
-    ?>
-<?php endforeach;
+<?= Div::widget()->class('media mt-5')->begin() ?>
+    <?php foreach ($posts->getModels() as $post): ?>
+        <?=
+            Div::widget()
+                ->class('media-body')
+                ->content(
+                    A::widget()
+                        ->content(
+                            H::widget()
+                                ->class('font-weight-bold mb-3')
+                                ->content($post->title)
+                                ->tagName('h4')
+                        )
+                        ->href(Url::to(['blog/post', 'slug' => $post->slug])),
+                    Span::widget()
+                        ->class('text-muted letter-spacing text-uppercase font-sm')
+                        ->content(Yii::$app->formatter->asDate($post->date, 'medium')),
+                    Img::widget()
+                        ->alt($post->title)
+                        ->class('img-fluid mt-3 mb-3')
+                        ->src("/uploads/$post->image_file")
+                        ->height('100px'),
+                    H::widget()
+                        ->class('font-xs mt-3 mb-3')
+                        ->content($post->content_short)
+                        ->tagName('h5'),
+                    A::widget()
+                        ->class('btn btn-primary btn-sm text-white')
+                        ->content(
+                            Yii::t('yii.blog', 'Read more')
+                        )
+                        ->href(Url::to(['blog/post', 'slug' => $post->slug])),
+                    Tag::widget()->class('mb-4')->tagName('hr'),
+                )
+        ?>
+    <?php endforeach; ?>
+<?= Div::end();

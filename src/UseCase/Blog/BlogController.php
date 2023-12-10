@@ -15,11 +15,14 @@ final class BlogController extends Controller
     public function actions(): array
     {
         return [
-            'archive' => [
-                'class' => Archive\ArchiveAction::class,
-            ],
+            //'archive' => [
+            //    'class' => Archive\ArchiveAction::class,
+            //],
             'index' => [
                 'class' => Index\IndexAction::class,
+            ],
+            'post' => [
+                'class' => Post\PostAction::class,
             ],
         ];
     }
@@ -32,12 +35,12 @@ final class BlogController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['archive', 'index'],
+                        'actions' => ['archive', 'index', 'post'],
                         'roles' => ['?'],
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['archive', 'index'],
+                        'actions' => ['archive', 'index', 'post'],
                         'roles' => ['@'],
                     ],
                 ],

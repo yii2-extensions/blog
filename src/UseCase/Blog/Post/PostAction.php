@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Yii\Blog\UseCase\Blog\Archive;
+namespace Yii\Blog\UseCase\Blog\Post;
 
 use yii\base\Action;
 use Yii\Blog\Service\ApiService;
 use yii\web\Controller;
 use yii\web\Response;
 
-final class ArchiveAction extends Action
+final class PostAction extends Action
 {
     public function __construct(
         string $id,
@@ -20,12 +20,14 @@ final class ArchiveAction extends Action
         parent::__construct($id, $controller, $config);
     }
 
-    public function run(): string|Response
+    public function run(string $slug = ''): string|Response
     {
+        $post = $this->apiService->getPostBySlug($slug);
+
         return $this->controller->render(
-            'archive/index',
+            'post/index',
             [
-                'trendings' => $this->apiService->getTrending(),
+                'post' => $post,
             ],
         );
     }

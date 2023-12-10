@@ -23,20 +23,6 @@ return [
         ],
     ],
     'web.params' => [
-        'app.menu.islogged' => [
-            [
-                'label' => 'Category',
-                'url' => ['/category/index'],
-                'order' => 1,
-                'category' => 'yii.blog',
-            ],
-            [
-                'label' => 'Post',
-                'url' => ['/post/index'],
-                'order' => 1,
-                'category' => 'yii.blog',
-            ],
-        ],
         'icons' => '@npm/fortawesome--fontawesome-free/svgs/{family}/{name}.svg',
     ],
 ];

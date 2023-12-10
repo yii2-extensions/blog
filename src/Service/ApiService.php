@@ -35,9 +35,14 @@ final class ApiService
         return $this->finderRepository->find($this->category)->orderBy(['id' => SORT_DESC])->all();
     }
 
+    public function getPostBySlug(string $slug): array|null|ActiveRecordInterface
+    {
+        return $this->finderRepository->findByOneCondition($this->post, ['slug' => $slug]);
+    }
+
     public function getTrending(int $limit = 3): array
     {
-        return $this->finderRepository->find($this->post)->orderBy(['views' => SORT_DESC])->limit($limit)->all();
+        return $this->finderRepository->find($this->post)->orderBy(['id' => SORT_DESC])->limit($limit)->all();
     }
 
     public function prepareCategoryDataProvider(): ArrayDataProvider
@@ -52,13 +57,13 @@ final class ApiService
         );
     }
 
-    public function preparePostDataProvider(int $pager = 5): ActiveDataProvider
+    public function preparePostDataProvider(int $pageSize = 5): ActiveDataProvider
     {
         return new ActiveDataProvider(
             [
                 'query' => $this->finderRepository->find($this->post)->orderBy(['id' => SORT_DESC]),
                 'pagination' => [
-                    'pageSize' => $pager,
+                    'pageSize' => $pageSize,
                 ],
             ],
         );

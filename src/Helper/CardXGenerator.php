@@ -21,25 +21,26 @@ final class CardXGenerator
 {
     public static function generate(string $id, string $title): void
     {
+        $dirImage = Yii::getAlias('@image');
         $dirResource = dirname(__DIR__) . '/Framework/resource/';
+        $dirUploads = Yii::getAlias('@uploads');
 
-        if (file_exists($dirResource . "image/cardx-$id.png")) {
-            copy($dirResource . "image/cardx-$id.png", Yii::getAlias('@image') . '/cardx.png');
+        if (file_exists("$dirUploads/cardx-$id.png")) {
+            copy("$dirUploads/cardx-$id.png", "$dirImage/cardx.png");
             return;
         }
 
         $text = $title;
-        $font = $dirResource . 'font/ArialBlack.ttf';
+        $font = "$dirResource/font/ArialBlack.ttf";
         $size = 40;
 
-        $im = imagecreatefrompng($dirResource . 'image/cardx.png');
+        $im = imagecreatefrompng("$dirResource/image/cardx.png");
         $black = imagecolorallocate($im, 0, 0, 0);
         $image_width = imagesx($im);
         $image_height = imagesy($im);
-        $bbox = imagettfbbox($size, 0, $font, $text);
         $lines = explode("\n", wordwrap($text, (int) ($image_width / ($size * 0.75)), "\n"));
-
         $total_height = count($lines) * $size * 1.5;
+
         $y_start = (int) (($image_height - $total_height) / 2);
 
         foreach ($lines as $i => $line) {
@@ -52,8 +53,8 @@ final class CardXGenerator
             imagettftext($im, $size, 0, $x, $y, $black, $font, $line);
         }
 
-        imagepng($im, $dirResource . "image/cardx-$id.png");
-        copy($dirResource . "image/cardx-$id.png", Yii::getAlias('@image') . '/cardx.png');
+        imagepng($im, "$dirUploads/cardx-$id.png");
+        copy("$dirUploads/cardx-$id.png", "$dirImage/cardx.png");
         imagedestroy($im);
     }
 }
