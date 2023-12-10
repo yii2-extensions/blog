@@ -22,12 +22,11 @@ final class PostAction extends Action
 
     public function run(string $slug = ''): string|Response
     {
-        $post = $this->apiService->getPostBySlug($slug);
-
         return $this->controller->render(
             'post/index',
             [
-                'post' => $post,
+                'post' => $this->apiService->getPostBySlug($slug),
+                'xcard' => $this->apiService->getImageCardX($slug),
             ],
         );
     }

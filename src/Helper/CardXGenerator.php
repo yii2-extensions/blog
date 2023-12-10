@@ -26,7 +26,7 @@ final class CardXGenerator
         $dirUploads = Yii::getAlias('@uploads');
 
         if (file_exists("$dirUploads/cardx-$id.png")) {
-            copy("$dirUploads/cardx-$id.png", "$dirImage/cardx.png");
+            copy("$dirUploads/cardx-$id.png", "$dirImage/cardx-$id.png");
             return;
         }
 
@@ -54,7 +54,7 @@ final class CardXGenerator
         }
 
         imagepng($im, "$dirUploads/cardx-$id.png");
-        copy("$dirUploads/cardx-$id.png", "$dirImage/cardx.png");
+        copy("$dirUploads/cardx-$id.png", "$dirImage/cardx-$id.png");
         imagedestroy($im);
     }
 }
