@@ -40,11 +40,6 @@ $columns = [
         'headerOptions' => ['style' => 'min-width: 200px;'],
     ],
     [
-        'attribute' => 'content_short',
-        'label' => Yii::t('yii.blog', 'content_short'),
-        'headerOptions' => ['style' => 'min-width: 200px;'],
-    ],
-    [
         'attribute' => 'tags',
         'label' => Yii::t('yii.blog', 'tags'),
         'headerOptions' => ['style' => 'min-width: 50px;'],
