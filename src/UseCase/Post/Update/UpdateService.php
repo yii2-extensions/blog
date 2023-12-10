@@ -29,7 +29,7 @@ final class UpdateService
             $postForm->image_file = FileProcessing::saveWithReturningFile(
                 $postForm->image_file,
                 Yii::getAlias('@uploads'),
-                "category{$post->id}",
+                "post{$post->id}",
                 false
             );
         }
