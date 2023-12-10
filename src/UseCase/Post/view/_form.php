@@ -9,7 +9,7 @@ use PHPForge\Html\Helper\Encode;
 use PHPForge\Html\P;
 use PHPForge\Html\Tag;
 use sjaakp\icon\Icon;
-use Yii2\Asset\Css\FontAwesomeSolidAsset;
+use Yii2\Asset\Cdn\FontAwesomeAsset;
 use Yii2\Extensions\DateTimePicker\DateTimePicker;
 use Yii2\Extensions\FilePond\FilePond;
 use Yii2\Extensions\Selectize\Selectize;
@@ -57,7 +57,7 @@ $configSummerNote = [
 ];
 $tabInput = 1;
 
-FontAwesomeSolidAsset::register($this);
+FontAwesomeAsset::register($this);
 ?>
 <?= Div::widget()->class('container mt-3')->begin() ?>
     <?= Div::widget()->class('row align-items-center justify-content-center')->begin() ?>

@@ -5,15 +5,14 @@ declare(strict_types=1);
 use PHPForge\Component\Item;
 use PHPForge\Component\Menu;
 use PHPForge\Component\NavBar;
-use Yii2\Asset\Css\FontAwesomeSolidAsset;
+use Yii2\Asset\Cdn\FontAwesomeAsset;
 use yii\helpers\Url;
-
 use yii\web\View;
 
 /**
  * @var View $this
  */
-FontAwesomeSolidAsset::register($this);
+FontAwesomeAsset::register($this);
 
 echo NavBar::widget()
     ->class('nav nav-pills justify-content-center flex-lg-column justify-content-lg-start gap-1 sidebar-nav')
@@ -26,7 +25,12 @@ echo NavBar::widget()
                 Item::create()
                     ->label(Yii::t('yii.blog', 'All posts'))
                     ->link(Url::to(['/blog/index']))
-                    ->iconClass('fa-solid fa-newspaper me-2 d-flex align-items-center fw-600'),
+                    ->iconClass('fa-solid fa-newspaper fa-lg me-2 d-flex align-items-center fw-600'),
+                Item::create()
+                    ->label(Yii::t('yii.blog', 'Follow me'))
+                    ->link('https://twitter.com/Terabytesoftw')
+                    ->linkAttributes(['target' => 'blank'])
+                    ->iconClass('fa-brands fa-x-twitter fa-lg me-2 d-flex align-items-center fw-600'),
             )
             ->id('w0-collapse')
             ->linkClass('nav-link d-flex align-items-center fw-600')
