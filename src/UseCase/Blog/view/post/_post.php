@@ -8,6 +8,7 @@ use PHPForge\Html\H;
 use PHPForge\Html\Img;
 use PHPForge\Html\Span;
 use Yii\Blog\Domain\Post\Post;
+use yii\helpers\Url;
 use yii\web\View;
 
 /**
@@ -22,13 +23,15 @@ use yii\web\View;
             ->content(
                 H::widget()->class('post-title mt-2')->content($post->title)->tagName('h2'),
                 Div::widget()
-                    ->class('fw-bold post-meta')
+                    ->class('d-flex justify-content-between')
                     ->content(
                         Span::widget()
-                            ->class('text-uppercase font-sm letter-spacing-1')
-                            ->content(
-                                Yii::$app->formatter->asDate($post->date, 'medium'),
-                            ),
+                            ->class('text-muted letter-spacing text-uppercase font-sm')
+                            ->content(Yii::$app->formatter->asDate($post->date, 'medium')),
+                        A::widget()
+                            ->class('btn bs-orange-bg btn-sm justify-content start font-weight-bold text-white')
+                            ->content($post->category->title)
+                            ->href(Url::to(['blog/category', 'slug' => $post->category->slug]))
                     ),
                 Div::widget()
                     ->class('post-featured-image mt-5')

@@ -584,6 +584,9 @@ a:hover,a:focus {
 .bd-text-purple {
     color:var(--bd-violet)
 }
+.bs-orange-bg {
+    background-color:#fd9843 !important
+}
 pre {
     display: block;
     padding: 9.5px;

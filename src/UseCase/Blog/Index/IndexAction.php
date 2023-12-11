@@ -29,10 +29,16 @@ final class IndexAction extends Action
             $pageSize = (int) $this->controller->request->get('per-page', $pageSize);
         }
 
+        $posts = $this->apiService->preparePostDataProvider($pageSize);
+
         return $this->controller->render(
             'posts/index',
             [
-                'posts' => $this->apiService->preparePostDataProvider($pageSize)
+                'action' => $this->id,
+                'categoryTitle' => '',
+                'posts' => $posts,
+                'postCount' => $posts->getTotalCount(),
+                'slug' => '',
             ],
         );
     }

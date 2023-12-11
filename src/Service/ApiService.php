@@ -39,6 +39,11 @@ final class ApiService
         return $this->finderRepository->find($this->category)->orderBy(['id' => SORT_DESC])->all();
     }
 
+    public function getCategoriesBySlug(string $slug): array
+    {
+        return $this->finderRepository->find($this->category)->where(['slug' => $slug])->all();
+    }
+
     public function getImageCardX(string $slug): string
     {
         $post = $this->finderRepository->findByOneCondition($this->post, ['slug' => $slug]);

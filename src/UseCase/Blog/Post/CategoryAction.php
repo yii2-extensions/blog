@@ -9,7 +9,7 @@ use Yii\Blog\Service\ApiService;
 use yii\web\Controller;
 use yii\web\Response;
 
-final class PostAction extends Action
+final class CategoryAction extends Action
 {
     public function __construct(
         string $id,
@@ -22,15 +22,16 @@ final class PostAction extends Action
 
     public function run(string $slug = ''): string|Response
     {
+        $category = $this->apiService->getCategoryBySlug($slug);
+
+        if ($category === null) {
+            return $this->controller->goHome();
+        }
+
         return $this->controller->render(
-            'post/index',
+            'category/index',
             [
-                'action' => $this->id,
-                'categoryTitle' => '',
-                'post' => $this->apiService->getPostBySlug($slug),
-                'postCount' => 1,
-                'slug' => $slug,
-                'xcard' => $this->apiService->getImageCardX($slug),
+                'post' => $category->posts,
             ],
         );
     }

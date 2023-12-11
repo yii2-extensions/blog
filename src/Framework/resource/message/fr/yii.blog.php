@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 /**
  * Message translations.
  *
@@ -25,12 +22,11 @@ return [
     'Add post' => 'Ajouter une publication',
     'Add subcategory' => 'Ajouter une sous-catégorie',
     'Add, edit, delete, enable and disable categories.' => 'Ajouter, modifier, supprimer, activer et désactiver des catégories.',
-    'All posts' => 'Tous les articles',
-    'Archive' => 'Archive',
-    'Archive|YiiVerse Blog' => 'Archive|YiiVerse Blog',
     'Are you sure to delete this user?' => 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?',
     'Are you sure to disable this category?' => 'Êtes-vous sûr de vouloir désactiver cette catégorie ?',
     'Are you sure to enable this category?' => 'Êtes-vous sûr de vouloir activer cette catégorie ?',
+    'By Category: {category} ({post.count})' => 'Par catégorie : {category} ({post.count})',
+    'By Post' => 'Par publication',
     'Categories' => 'Catégories',
     'Category' => 'Catégorie',
     'Content Short' => 'Contenu court',
@@ -43,11 +39,16 @@ return [
     'Enter description Here.' => 'Entrez la description ici.',
     'Enter slug Here.' => 'Entrez le slug ici.',
     'Enter title Here.' => 'Entrez le titre ici.',
+    'Filter by Category: {category}' => 'Filtrer par catégorie : {category}',
+    'Follow me' => 'Suis-moi',
     'Id' => 'Id',
+    'Latest' => 'Dernier',
+    'Latest ({post.count})' => 'Dernier ({post.count})',
     'Parent category:' => 'Catégorie parente :',
     'Please fill out the following fields to category' => 'Veuillez remplir les champs suivants pour la catégorie',
     'Please fill out the following fields to create post.' => 'Veuillez remplir les champs suivants pour créer la publication.',
     'Posts' => 'Publications',
+    'Read more' => 'Lire la suite',
     'Register' => 'S\'inscrire',
     'Register category' => 'Enregistrer la catégorie',
     'Save' => 'Enregistrer',
@@ -67,7 +68,6 @@ return [
     'Update' => 'Mettre à jour',
     'Update category' => 'Mettre à jour la catégorie',
     'Update posts' => 'Mettre à jour les publications',
-    'YiiVerse Blog' => 'YiiVerse Blog',
     'Your category and its sub categories have been successfully deleted.' => 'Votre catégorie et ses sous-catégories ont été supprimées avec succès.',
     'Your category has been successfully deleted.' => 'Votre catégorie a été supprimée avec succès.',
     'Your category has been successfully disabled.' => 'Votre catégorie a été désactivée avec succès.',
@@ -77,7 +77,6 @@ return [
     'Your category has not been found.' => 'Votre catégorie n\'a pas été trouvée.',
     'Your principal category has been successfully registered.' => 'Votre catégorie principale a été enregistrée avec succès.',
     'Your sub category has been successfully registered.' => 'Votre sous-catégorie a été enregistrée avec succès.',
-    'content_short' => 'contenu_court',
     'created_at' => 'créé_à',
     'tags' => 'tags',
 ];
