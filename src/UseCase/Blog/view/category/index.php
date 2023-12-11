@@ -3,16 +3,16 @@
 declare(strict_types=1);
 
 use PHPForge\Html\Div;
-use PHPForge\Html\Helper\Encode;
+use Yii\Blog\Domain\Category\Category;
 use Yii\Blog\Domain\Post\Post;
 use Yii\Blog\Framework\Asset\BlogAsset;
-use Yii\Blog\Helper\CardXGenerator;
 use yii\web\View;
 
 /**
  * @var string $action
  * @var string $categoryTitle
- * @var Post $post
+ * @var Category $category
+ * @var Post[] $posts
  * @var int $postCount
  * @var string $slug
  * @var View $this
@@ -21,10 +21,8 @@ use yii\web\View;
 $items = [];
 
 BlogAsset::register($this);
-CardXGenerator::generate((string) $post->id, $post->title);
 
-$this->title = Encode::content($post->slug);
-$this->params['xcard'] = $xcard;
+$this->title = Yii::t('yii.blog', 'Filter by Category: {category}', ['category' => $category->title]);
 
 echo Div::widget()
     ->class('container-xxl mt-5 px-4 px-xxl-2')
@@ -42,9 +40,10 @@ echo Div::widget()
                     ],
                 ),
                 $this->render(
-                    '_post',
+                    '_posts',
                     [
-                        'post' => $post,
+                        'category' => $category,
+                        'posts' => $posts,
                     ],
                 ),
             )

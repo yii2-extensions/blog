@@ -5,14 +5,21 @@ declare(strict_types=1);
 use PHPForge\Component\Item;
 use PHPForge\Component\Menu;
 use PHPForge\Component\NavBar;
-use Yii2\Asset\Cdn\FontAwesomeAsset;
+use sjaakp\icon\Icon;
 use yii\helpers\Url;
 use yii\web\View;
 
 /**
+ * @var string $action
+ * @var string $categoryTitle
+ * @var int $postCount
+ * @var string $slug
  * @var View $this
  */
-FontAwesomeAsset::register($this);
+$labelLatest = match ($action) {
+    'category', 'post' => Yii::t('yii.blog', 'Latest'),
+    default => Yii::t('yii.blog', 'Latest ({post.count})', ['post.count' => $postCount]),
+};
 
 echo NavBar::widget()
     ->class('nav nav-pills justify-content-center flex-lg-column justify-content-lg-start gap-1 sidebar-nav')
@@ -23,14 +30,44 @@ echo NavBar::widget()
             ->currentPath(Yii::$app->request->url)
             ->items(
                 Item::create()
-                    ->label(Yii::t('yii.blog', 'All posts'))
+                    ->label($labelLatest)
                     ->link(Url::to(['/blog/index']))
-                    ->iconClass('fa-solid fa-newspaper fa-lg me-2 d-flex align-items-center fw-600'),
+                    ->iconContainerClass('d-flex align-items-center fa-xl fw-600')
+                    ->iconText(
+                        Icon::renderIcon('solid', 'fire', ['class' => 'me-2']),
+                    ),
                 Item::create()
                     ->label(Yii::t('yii.blog', 'Follow me'))
                     ->link('https://twitter.com/Terabytesoftw')
                     ->linkAttributes(['target' => 'blank'])
-                    ->iconClass('fa-brands fa-x-twitter fa-lg me-2 d-flex align-items-center fw-600'),
+                    ->iconContainerClass('d-flex align-items-center fa-xl fw-600')
+                    ->iconText(
+                        Icon::renderIcon('brands', 'x-twitter', ['class' => 'me-2']),
+                    ),
+                Item::create()
+                    ->label(
+                        Yii::t(
+                            'yii.blog',
+                            'By Category: {category} ({post.count})',
+                            ['category' => $categoryTitle, 'post.count' => $postCount],
+                        )
+                    )
+                    ->link(Url::to(['/blog/category', 'slug' => $slug]))
+                    ->iconContainerClass('d-flex align-items-center fa-xl fw-600')
+                    ->iconText(
+                        Icon::renderIcon('solid', 'filter', ['class' => 'me-2']),
+                    )
+                    ->active($action === 'category')
+                    ->visible($action === 'category'),
+                Item::create()
+                    ->label(Yii::t('yii.blog', 'By Post'))
+                    ->link(Url::to(['/blog/post', 'slug' => $slug]))
+                    ->iconContainerClass('d-flex align-items-center fa-xl fw-600')
+                    ->iconText(
+                        Icon::renderIcon('solid', 'filter', ['class' => 'me-2']),
+                    )
+                    ->active($action === 'post')
+                    ->visible($action === 'post')
             )
             ->id('w0-collapse')
             ->linkClass('nav-link d-flex align-items-center fw-600')

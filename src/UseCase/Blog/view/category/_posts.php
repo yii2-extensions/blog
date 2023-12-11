@@ -8,13 +8,15 @@ use PHPForge\Html\H;
 use PHPForge\Html\Img;
 use PHPForge\Html\Span;
 use PHPForge\Html\Tag;
+use Yii\Blog\Domain\Category\Category;
+use Yii\Blog\Domain\Post\Post;
 use Yii\Blog\Framework\Asset\BlogAsset;
-use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\web\View;
 
 /**
- * @var ActiveDataProvider $posts
+ * @var Category $category
+ * @var Post[] $posts
  * @var View $this
  */
 BlogAsset::register($this);
@@ -22,7 +24,17 @@ BlogAsset::register($this);
 $items = [];
 ?>
 <?= Div::widget()->class('media mt-5')->begin() ?>
-    <?php foreach ($posts->getModels() as $post): ?>
+    <?=
+        Div::widget()
+            ->class('d-flex justify-content-end mb-3')
+            ->content(
+                A::widget()
+                    ->class('btn bs-orange-bg btn-sm justify-content start font-weight-bold text-white')
+                    ->content($category->title)
+                    ->href(Url::to(['blog/category', 'slug' => $category->slug]))
+            )
+    ?>
+    <?php foreach ($posts as $post): ?>
         <?=
             Div::widget()
                 ->class('media-body')
@@ -41,10 +53,6 @@ $items = [];
                             Span::widget()
                                 ->class('text-muted letter-spacing text-uppercase font-sm')
                                 ->content(Yii::$app->formatter->asDate($post->date, 'medium')),
-                            A::widget()
-                                ->class('btn bs-orange-bg btn-sm justify-content start font-weight-bold text-white')
-                                ->content($post->category->title)
-                                ->href(Url::to(['blog/category', 'slug' => $post->category->slug]))
                         ),
                     Img::widget()
                         ->alt($post->title)

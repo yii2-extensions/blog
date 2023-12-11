@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 /**
  * Message translations.
  *
@@ -25,12 +22,11 @@ return [
     'Add post' => 'Добавить пост',
     'Add subcategory' => 'Добавить подкатегорию',
     'Add, edit, delete, enable and disable categories.' => 'Добавить, изменить, удалить, включить и отключить категории.',
-    'All posts' => 'Все посты',
-    'Archive' => 'Архив',
-    'Archive|YiiVerse Blog' => 'Архив|YiiVerse Blog',
     'Are you sure to delete this user?' => 'Вы уверены, что хотите удалить этого пользователя?',
     'Are you sure to disable this category?' => 'Вы уверены, что хотите отключить эту категорию?',
     'Are you sure to enable this category?' => 'Вы уверены, что хотите включить эту категорию?',
+    'By Category: {category} ({post.count})' => 'По категории: {category} ({post.count})',
+    'By Post' => 'По сообщению',
     'Categories' => 'Категории',
     'Category' => 'Категория',
     'Content Short' => 'Краткое содержание',
@@ -43,11 +39,16 @@ return [
     'Enter description Here.' => 'Введите описание здесь.',
     'Enter slug Here.' => 'Введите слаг здесь.',
     'Enter title Here.' => 'Введите заголовок здесь.',
+    'Filter by Category: {category}' => 'Фильтр по категории: {category}',
+    'Follow me' => 'Следуй за мной',
     'Id' => 'ID',
+    'Latest' => 'Последние',
+    'Latest ({post.count})' => 'Последние ({post.count})',
     'Parent category:' => 'Родительская категория:',
     'Please fill out the following fields to category' => 'Пожалуйста, заполните следующие поля для категории',
     'Please fill out the following fields to create post.' => 'Пожалуйста, заполните следующие поля для создания поста.',
     'Posts' => 'Посты',
+    'Read more' => 'Читать дальше',
     'Register' => 'Зарегистрировать',
     'Register category' => 'Зарегистрировать категорию',
     'Save' => 'Сохранить',
@@ -67,7 +68,6 @@ return [
     'Update' => 'Обновить',
     'Update category' => 'Обновить категорию',
     'Update posts' => 'Обновить посты',
-    'YiiVerse Blog' => 'YiiVerse Blog',
     'Your category and its sub categories have been successfully deleted.' => 'Ваша категория и ее подкатегории успешно удалены.',
     'Your category has been successfully deleted.' => 'Ваша категория успешно удалена.',
     'Your category has been successfully disabled.' => 'Ваша категория успешно отключена.',
@@ -77,7 +77,6 @@ return [
     'Your category has not been found.' => 'Ваша категория не найдена.',
     'Your principal category has been successfully registered.' => 'Ваша основная категория успешно зарегистрирована.',
     'Your sub category has been successfully registered.' => 'Ваша подкатегория успешно зарегистрирована.',
-    'content_short' => 'краткое_содержание',
     'created_at' => 'создано_в',
     'tags' => 'теги',
 ];

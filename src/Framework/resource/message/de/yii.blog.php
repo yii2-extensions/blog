@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 /**
  * Message translations.
  *
@@ -25,12 +22,11 @@ return [
     'Add post' => 'Beitrag hinzufügen',
     'Add subcategory' => 'Unterkategorie hinzufügen',
     'Add, edit, delete, enable and disable categories.' => 'Kategorien hinzufügen, bearbeiten, löschen, aktivieren und deaktivieren.',
-    'All posts' => 'Alle Beiträge',
-    'Archive' => 'Archiv',
-    'Archive|YiiVerse Blog' => 'Archiv|YiiVerse Blog',
     'Are you sure to delete this user?' => 'Sind Sie sicher, diesen Benutzer zu löschen?',
     'Are you sure to disable this category?' => 'Sind Sie sicher, diese Kategorie zu deaktivieren?',
     'Are you sure to enable this category?' => 'Sind Sie sicher, diese Kategorie zu aktivieren?',
+    'By Category: {category} ({post.count})' => 'Nach Kategorie: {category} ({post.count})',
+    'By Post' => 'Nach Beitrag',
     'Categories' => 'Kategorien',
     'Category' => 'Kategorie',
     'Content Short' => 'Kurzer Inhalt',
@@ -43,11 +39,16 @@ return [
     'Enter description Here.' => 'Beschreibung hier eingeben.',
     'Enter slug Here.' => 'Slug hier eingeben.',
     'Enter title Here.' => 'Titel hier eingeben.',
+    'Filter by Category: {category}' => 'Filtern nach Kategorie: {category}',
+    'Follow me' => 'Folge mir',
     'Id' => 'ID',
+    'Latest' => 'neueste',
+    'Latest ({post.count})' => 'neueste ({post.count})',
     'Parent category:' => 'Übergeordnete Kategorie:',
     'Please fill out the following fields to category' => 'Bitte füllen Sie die folgenden Felder aus, um eine Kategorie anzulegen.',
     'Please fill out the following fields to create post.' => 'Bitte füllen Sie die folgenden Felder aus, um einen Beitrag zu erstellen.',
     'Posts' => 'Beiträge',
+    'Read more' => 'Mehr lesen',
     'Register' => 'Registrieren',
     'Register category' => 'Kategorie registrieren',
     'Save' => 'Speichern',
@@ -67,7 +68,6 @@ return [
     'Update' => 'Aktualisieren',
     'Update category' => 'Kategorie aktualisieren',
     'Update posts' => 'Beiträge aktualisieren',
-    'YiiVerse Blog' => 'YiiVerse Blog',
     'Your category and its sub categories have been successfully deleted.' => 'Ihre Kategorie und ihre Unterkategorien wurden erfolgreich gelöscht.',
     'Your category has been successfully deleted.' => 'Ihre Kategorie wurde erfolgreich gelöscht.',
     'Your category has been successfully disabled.' => 'Ihre Kategorie wurde erfolgreich deaktiviert.',
@@ -77,7 +77,6 @@ return [
     'Your category has not been found.' => 'Ihre Kategorie wurde nicht gefunden.',
     'Your principal category has been successfully registered.' => 'Ihre Hauptkategorie wurde erfolgreich registriert.',
     'Your sub category has been successfully registered.' => 'Ihre Unterkategorie wurde erfolgreich registriert.',
-    'content_short' => 'kurzer_inhalt',
     'created_at' => 'erstellt_am',
     'tags' => 'Tags',
 ];

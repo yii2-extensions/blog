@@ -11,6 +11,10 @@ use yii\helpers\Url;
 use yii\web\View;
 
 /**
+ * @var string $action
+ * @var string $categoryTitle
+ * @var int $postCount
+ * @var string $slug
  * @var View $this
  */
 $items = [];
@@ -53,6 +57,14 @@ echo Div::widget()
                                     )
                             )
                     ),
-                $this->render('_menu-sidebar'),
+                $this->render(
+                    '_menu-sidebar',
+                    [
+                        'action' => $action,
+                        'categoryTitle' => $categoryTitle,
+                        'postCount' => $postCount,
+                        'slug' => $slug
+                    ],
+                ),
             ),
     );

@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 /**
  * Message translations.
  *
@@ -25,12 +22,11 @@ return [
     'Add post' => '添加文章',
     'Add subcategory' => '添加子类别',
     'Add, edit, delete, enable and disable categories.' => '添加、编辑、删除、启用和禁用类别。',
-    'All posts' => '所有文章',
-    'Archive' => '存档',
-    'Archive|YiiVerse Blog' => '存档|YiiVerse 博客',
     'Are you sure to delete this user?' => '您确定要删除此用户吗？',
     'Are you sure to disable this category?' => '您确定要禁用此类别吗？',
     'Are you sure to enable this category?' => '您确定要启用此类别吗？',
+    'By Category: {category} ({post.count})' => '按类别：{category}（{post.count}）',
+    'By Post' => '按帖子',
     'Categories' => '类别',
     'Category' => '类别',
     'Content Short' => '内容简介',
@@ -43,11 +39,16 @@ return [
     'Enter description Here.' => '在此输入描述。',
     'Enter slug Here.' => '在此输入 slug。',
     'Enter title Here.' => '在此输入标题。',
+    'Filter by Category: {category}' => '按类别筛选：{category}',
+    'Follow me' => '跟着我',
     'Id' => 'ID',
+    'Latest' => '最新的',
+    'Latest ({post.count})' => '最新的（{post.count}）',
     'Parent category:' => '父类别：',
     'Please fill out the following fields to category' => '请填写以下字段以创建类别',
     'Please fill out the following fields to create post.' => '请填写以下字段以创建文章。',
     'Posts' => '文章',
+    'Read more' => '阅读更多',
     'Register' => '注册',
     'Register category' => '注册类别',
     'Save' => '保存',
@@ -67,7 +68,6 @@ return [
     'Update' => '更新',
     'Update category' => '更新类别',
     'Update posts' => '更新文章',
-    'YiiVerse Blog' => 'YiiVerse 博客',
     'Your category and its sub categories have been successfully deleted.' => '您的类别及其子类别已成功删除。',
     'Your category has been successfully deleted.' => '您的类别已成功删除。',
     'Your category has been successfully disabled.' => '您的类别已成功禁用。',
@@ -77,7 +77,6 @@ return [
     'Your category has not been found.' => '未找到您的类别。',
     'Your principal category has been successfully registered.' => '您的主类别已成功注册。',
     'Your sub category has been successfully registered.' => '您的子类别已成功注册。',
-    'content_short' => '内容简介',
     'created_at' => '创建于',
     'tags' => '标签',
 ];
