@@ -40,6 +40,7 @@ return [
     'Enter description Here.' => 'Введите описание здесь.',
     'Enter slug Here.' => 'Введите слаг здесь.',
     'Enter title Here.' => 'Введите заголовок здесь.',
+    'Explore now' => 'Исследуйте сейчас',
     'Filter by Category: {category}' => 'Фильтр по категории: {category}',
     'Follow me' => 'Следуй за мной',
     'Id' => 'ID',

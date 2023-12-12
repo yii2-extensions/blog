@@ -40,6 +40,7 @@ return [
     'Enter description Here.' => '在此输入描述。',
     'Enter slug Here.' => '在此输入 slug。',
     'Enter title Here.' => '在此输入标题。',
+    'Explore now' => '现在探索',
     'Filter by Category: {category}' => '按类别筛选：{category}',
     'Follow me' => '跟着我',
     'Id' => 'ID',
@@ -80,6 +81,6 @@ return [
     'Your principal category has been successfully registered.' => '您的主类别已成功注册。',
     'Your sub category has been successfully registered.' => '您的子类别已成功注册。',
     'created_at' => '创建于',
-    'discussions within the Yii community. ' => 'Yii 社区内的讨论。',
+    'discussions within the Yii community. ' => 'Yii 社区内的讨论',
     'tags' => '标签',
 ];

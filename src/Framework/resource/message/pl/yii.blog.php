@@ -40,6 +40,7 @@ return [
     'Enter description Here.' => 'Dodaj opis.',
     'Enter slug Here.' => 'Dodaj sluga.',
     'Enter title Here.' => 'Dodaj tytuł.',
+    'Explore now' => 'Przeglądaj teraz',
     'Filter by Category: {category}' => 'Filtrowanie wg. kategorii: {category}',
     'Follow me' => 'Obserwuj mnie',
     'Id' => 'ID',
