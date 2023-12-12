@@ -21,7 +21,7 @@ use yii\web\View;
         Div::widget()
             ->class('post-header mb-5 text-center')
             ->content(
-                H::widget()->class('post-title mt-2')->content($post->title)->tagName('h2'),
+                H::widget()->class('post-title mt-2')->content($post->title)->tagName('h1'),
                 Div::widget()
                     ->class('d-flex justify-content-between')
                     ->content(
