@@ -12,8 +12,6 @@ use yii\db\ActiveRecordInterface;
  * @property int $id The ID.
  * @property string $class The class name of the item.
  * @property int $item_id The ID of the item.
- * @property string $h1 The H1.
- * @property string $title The title.
  * @property string $keywords The keywords.
  * @property string $description The description.
  */

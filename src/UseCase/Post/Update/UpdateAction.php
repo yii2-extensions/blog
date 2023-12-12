@@ -72,12 +72,7 @@ final class UpdateAction extends Action
         $this->ajaxValidator->validate($postForm);
         $this->ajaxValidator->validate($seoForm);
 
-        if (
-            $postForm->load($this->request->post()) &&
-            $seoForm->load($this->request->post()) &&
-            $postForm->validate() &&
-            $seoForm->validate()
-        ) {
+        if ($postForm->load($this->request->post()) && $seoForm->load($this->request->post()) && $postForm->validate()) {
             match ($this->updateService->run($post, $postForm, $seoForm)) {
                 true => $this->trigger(PostEvent::AFTER_UPDATE, $registerEvent),
                 default => $this->trigger(PostEvent::NOT_UPDATE, $registerEvent),

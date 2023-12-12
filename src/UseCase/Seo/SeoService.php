@@ -22,7 +22,7 @@ final class SeoService
             throw new RuntimeException('Calling "' . __CLASS__ . '::run()" on existing category.');
         }
 
-        $seo->setAttributes($seoForm->getAttributes(), false);
+        $seo->setAttributes($seoForm->getAttributes());
         $seo->class = $class;
         $seo->item_id = $itemId;
 

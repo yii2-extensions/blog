@@ -32,8 +32,6 @@ BootstrapPluginAsset::register($this);
         )
 ?>
 <?= Div::widget()->class('collapse')->id('seo-form')->begin() ?>
-    <?= $form->field($formModel, 'h1')->textInput(['tabindex' => $tabInput++]) ?>
-    <?= $form->field($formModel, 'title')->textInput(['tabindex' => $tabInput++]) ?>
     <?= $form->field($formModel, 'keywords')->textInput(['tabindex' => $tabInput++]) ?>
     <?= $form->field($formModel, 'description')->textArea(['style' => 'height: 120px', 'tabindex' => $tabInput++]) ?>
 <?= Div::end();

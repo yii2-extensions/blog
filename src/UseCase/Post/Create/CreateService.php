@@ -30,7 +30,7 @@ final class CreateService
         $postForm->image_file = '';
 
         $post->setScenario('create');
-        $post->setAttributes($postForm->getAttributes(), false);
+        $post->setAttributes($postForm->getAttributes());
 
         if (strtotime($post->date) !== false) {
             $post->date = strtotime($post->date);

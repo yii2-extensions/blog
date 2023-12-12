@@ -12,12 +12,14 @@ use Yii\Blog\Domain\Tag\Tag;
 use Yii\Blog\Domain\Tag\TagInterface;
 use Yii\Blog\Domain\Tag\TagItem;
 use Yii\Blog\Domain\Tag\TagItemInterface;
-use Yii\Blog\Framework\EventHandler\CategoryRegisterEventHandler;
+use Yii\Blog\Framework\EventHandler\CategoryEventHandler;
+use Yii\Blog\Framework\EventHandler\PostEventHandler;
 use yii\i18n\PhpMessageSource;
 
 return [
     'bootstrap' => [
-        CategoryRegisterEventHandler::class,
+        CategoryEventHandler::class,
+        PostEventHandler::class,
     ],
     'components' => [
         'i18n' => [
@@ -35,8 +37,11 @@ return [
                 'category/delete/<slug>' => 'category/delete',
                 'category/disable/<slug>' => 'category/disable',
                 'category/enable/<slug>' => 'category/enable',
+                'category/index' => 'category/index',
                 'category/index/<slug>' => 'category/index',
                 'category/index/page/<page>/per-page/<per-page>' => 'category/index',
+                'category/register' => 'category/register',
+                'category/register/<id>' => 'category/register',
                 'category/update/<slug>' => 'category/update',
                 'post/create' => 'post/create',
                 'post/index/page/<page>/per-page/<per-page>' => 'post/index',
