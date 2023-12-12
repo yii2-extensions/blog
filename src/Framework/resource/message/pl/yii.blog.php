@@ -43,7 +43,7 @@ return [
     'Enter slug Here.' => 'Dodaj sluga.',
     'Enter title Here.' => 'Dodaj tytuł.',
     'Filter by Category: {category}' => 'Filtrowanie wg. kategorii: {category}',
-    'Follow me' => 'Śledź mnie',
+    'Follow me' => 'Obserwuj mnie',
     'Id' => 'ID',
     'Latest' => 'Najnowsze',
     'Latest ({post.count})' => 'Najnowsze ({post.count})',
