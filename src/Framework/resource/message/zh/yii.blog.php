@@ -35,6 +35,7 @@ return [
     'Delete' => '删除',
     'Description' => '描述',
     'Disable category' => '禁用类别',
+    'Discover new releases, fresh articles, updated wikis, and engage in general' => '发现新版本、新鲜文章、更新的 Wiki，并参与一般',
     'Enable category' => '启用类别',
     'Enter description Here.' => '在此输入描述。',
     'Enter slug Here.' => '在此输入 slug。',
@@ -60,6 +61,7 @@ return [
     'Seo texts' => 'SEO 文本',
     'Slug' => 'Slug',
     'Status' => '状态',
+    'Stay updated with the latest news and announcements on YiiFramework.' => '及时了解 YiiFramework 的最新新闻和公告。',
     'Subcategory' => '子类别',
     'Tags' => '标签',
     'This category does not exist.' => '此类别不存在。',
@@ -78,5 +80,6 @@ return [
     'Your principal category has been successfully registered.' => '您的主类别已成功注册。',
     'Your sub category has been successfully registered.' => '您的子类别已成功注册。',
     'created_at' => '创建于',
+    'discussions within the Yii community. ' => 'Yii 社区内的讨论。',
     'tags' => '标签',
 ];
