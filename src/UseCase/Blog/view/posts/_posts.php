@@ -30,9 +30,9 @@ $items = [];
                     A::widget()
                         ->content(
                             H::widget()
-                                ->class('font-weight-bold mb-3')
+                                ->class('fs-4 font-weight-bold mb-3 text-justify')
                                 ->content($post->title)
-                                ->tagName('h4')
+                                ->tagName('h1')
                         )
                         ->href(Url::to(['blog/post', 'slug' => $post->slug])),
                     Div::widget()

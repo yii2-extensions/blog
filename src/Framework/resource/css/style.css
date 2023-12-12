@@ -587,6 +587,9 @@ a:hover,a:focus {
 .bs-orange-bg {
     background-color:#fd9843 !important
 }
+.text-justify {
+    text-align:justify !important
+}
 pre {
     display: block;
     padding: 9.5px;
