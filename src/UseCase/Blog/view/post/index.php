@@ -23,7 +23,10 @@ $items = [];
 BlogAsset::register($this);
 CardXGenerator::generate((string) $post->id, $post->title);
 
-$this->title = Encode::content($post->slug);
+$this->title = Encode::content($post->title);
+$this->params['keywords'] = $post->seo->keywords;
+$this->params['description'] = $post->seo->description;
+$this->params['slug'] = $slug;
 $this->params['xcard'] = $xcard;
 
 echo Div::widget()

@@ -15,7 +15,7 @@ use Yii\Blog\UseCase\Category\Register\RegisterAction;
 use Yii\Blog\UseCase\Category\Update\UpdateAction;
 use yii\web\Application;
 
-final class CategoryRegisterEventHandler implements BootstrapInterface
+final class CategoryEventHandler implements BootstrapInterface
 {
     /**
      * @param Application $app

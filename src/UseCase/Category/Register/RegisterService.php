@@ -32,7 +32,7 @@ final class RegisterService
         $categoryForm->image_file = '';
 
         $category->setScenario('register');
-        $category->setAttributes($categoryForm->getAttributes(), false);
+        $category->setAttributes($categoryForm->getAttributes());
 
         if ($parent !== null && $categoryForm->parent === $parent) {
             $parentCategory = $this->finderRepository->findById($category, (int) $parent);

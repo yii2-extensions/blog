@@ -11,10 +11,8 @@ final class Seo extends ActiveRecord implements SeoInterface
     public function safeAttributes(): array
     {
         return [
-            'h1',
-            'title',
             'keywords',
-            'title',
+            'description',
         ];
     }
 

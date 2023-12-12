@@ -29,7 +29,7 @@ final class PostForm extends Model
             'category_id' => Yii::t('yii.blog', 'Category'),
             'title' => Yii::t('yii.blog', 'Title'),
             'content' => '',
-            'content_short' => Yii::t('yii.blog', 'Content Short'),
+            'content_short' => '',
             'date' => Yii::t('yii.blog', 'Date'),
             'image_file' => '',
             'slug' => Yii::t('yii.blog', 'Slug'),
@@ -68,8 +68,9 @@ final class PostForm extends Model
                 'value' => BlogModule::STATUS_ACTIVE,
             ],
             ['tagNames', 'safe'],
-            ['image_file', 'default', 'value' => ''],
+            ['image_file', 'safe'],
             ['lang', 'default', 'value' => 'en'],
+            ['status', 'safe'],
         ];
     }
 }

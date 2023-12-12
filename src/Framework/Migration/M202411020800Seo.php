@@ -15,8 +15,6 @@ final class M202411020800Seo extends Migration
                 'id' => $this->primaryKey(),
                 'class' => $this->string(128)->notNull(),
                 'item_id' => $this->integer()->notNull(),
-                'h1' => $this->string(255),
-                'title' => $this->string(255),
                 'keywords' => $this->string(255),
                 'description' => $this->string(255),
             ],

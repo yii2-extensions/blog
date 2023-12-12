@@ -36,13 +36,16 @@ final class UpdateService
 
         /** @var Post $post */
         $post->setScenario('update');
-        $post->setAttributes($postForm->getAttributes(), false);
+        $post->setAttributes($postForm->getAttributes());
 
         $post->tagNames = $postForm->tagNames;
         $seo = $post->seo;
 
         $seo->setAttributes($seoForm->getAttributes());
 
-        return ($this->persistenceRepository->update($post) || $this->persistenceRepository->update($seo));
+        $resultSeo = $this->persistenceRepository->update($seo);
+        $resultPost = $this->persistenceRepository->update($post);
+
+        return $resultSeo || $resultPost;
     }
 }
