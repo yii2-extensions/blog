@@ -40,6 +40,7 @@ return [
     'Enter description Here.' => 'Digite a descrição aqui.',
     'Enter slug Here.' => 'Digite o slug aqui.',
     'Enter title Here.' => 'Digite o título aqui.',
+    'Explore now' => 'Explore agora',
     'Filter by Category: {category}' => 'Filtrar por categoria: {category}',
     'Follow me' => 'Siga-me',
     'Id' => 'Id',

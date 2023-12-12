@@ -61,7 +61,7 @@ echo Div::widget()
                                         ),
                                         ' ',
                                         A::widget()
-                                            ->content('Explore now')
+                                            ->content(Yii::t('yii.blog', 'Explore now'))
                                             ->href('https://yiiframework.com/')
                                             ->title('YiiFramework')
                                     )

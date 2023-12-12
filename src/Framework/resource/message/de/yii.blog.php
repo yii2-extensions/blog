@@ -43,6 +43,7 @@ return [
     'Enter description Here.' => 'Beschreibung hier eingeben.',
     'Enter slug Here.' => 'Slug hier eingeben.',
     'Enter title Here.' => 'Titel hier eingeben.',
+    'Explore now' => 'Jetzt erkunden',
     'Filter by Category: {category}' => 'Filtern nach Kategorie: {category}',
     'Follow me' => 'Folge mir',
     'Id' => 'ID',
