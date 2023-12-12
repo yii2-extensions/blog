@@ -45,11 +45,21 @@ echo Div::widget()
                                 H::widget()->class('mb-1 mb-lg-2 f1 fw-600')->content('YiiVerse Blog')->tagName('h1'),
                                 P::widget()->
                                     content(
-                                        'Stay updated with the latest news and announcements on YiiFramework.',
+                                        Yii::t(
+                                            'yii.blog',
+                                            'Stay updated with the latest news and announcements on YiiFramework.'
+                                        ),
                                         "\n",
-                                        'Discover new releases, fresh articles, updated wikis, and engage in general',
+                                        Yii::t(
+                                            'yii.blog',
+                                            'Discover new releases, fresh articles, updated wikis, and engage in general',
+                                        ),
                                         "\n",
-                                        'discussions within the Yii community. ',
+                                        Yii::t(
+                                            'yii.blog',
+                                            'discussions within the Yii community.',
+                                        ),
+                                        ' ',
                                         A::widget()
                                             ->content('Explore now')
                                             ->href('https://yiiframework.com/')

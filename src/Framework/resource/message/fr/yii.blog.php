@@ -35,6 +35,7 @@ return [
     'Delete' => 'Supprimer',
     'Description' => 'Description',
     'Disable category' => 'Désactiver la catégorie',
+    'Discover new releases, fresh articles, updated wikis, and engage in general' => 'Découvrez de nouvelles sorties, des articles frais, des wikis mis à jour et participez en général',
     'Enable category' => 'Activer la catégorie',
     'Enter description Here.' => 'Entrez la description ici.',
     'Enter slug Here.' => 'Entrez le slug ici.',
@@ -60,6 +61,7 @@ return [
     'Seo texts' => 'Textes SEO',
     'Slug' => 'Slug',
     'Status' => 'Statut',
+    'Stay updated with the latest news and announcements on YiiFramework.' => 'Restez informé des dernières nouvelles et annonces sur YiiFramework.',
     'Subcategory' => 'Sous-catégorie',
     'Tags' => 'Tags',
     'This category does not exist.' => 'Cette catégorie n\'existe pas.',
@@ -78,5 +80,6 @@ return [
     'Your principal category has been successfully registered.' => 'Votre catégorie principale a été enregistrée avec succès.',
     'Your sub category has been successfully registered.' => 'Votre sous-catégorie a été enregistrée avec succès.',
     'created_at' => 'créé_à',
+    'discussions within the Yii community. ' => 'discussions au sein de la communauté Yii.',
     'tags' => 'tags',
 ];
