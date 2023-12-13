@@ -48,7 +48,7 @@ $configSummerNote = [
             ['fontname', ['fontname']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
-            ['lineHeights', ['0.5', '1']],
+            ['height', ['height']],
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']],

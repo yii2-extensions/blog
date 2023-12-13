@@ -81,15 +81,16 @@ final class UpdateAction extends Action
             return $this->controller->redirect(['post/index']);
         }
 
+        $imageFile = file_exists(Yii::getAlias('@uploads') . '/' . $post->image_file)
+            ? '/uploads' . '/' . $post->image_file : '';
+
         return $this->controller->render(
             '_form',
             [
                 'blogModule' => $this->blogModule,
                 'buttonTitle' => Yii::t('yii.blog', 'Update'),
                 'formModel' => $postForm,
-                'imageFile' => $post->image_file !== ''
-                    ? '/uploads' . '/' . $post->image_file
-                    : '',
+                'imageFile' => $imageFile,
                 'nodeTree' => $this->categoryService->buildNodeTreeWithDepth(),
                 'seoForm' => $seoForm,
                 'title' => Yii::t('yii.blog', 'Update posts'),
