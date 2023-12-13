@@ -63,6 +63,11 @@ final class ApiService
             : '/image/cardx.png';
     }
 
+    public function getPosts(): array
+    {
+        return $this->finderRepository->find($this->post)->orderBy(['id' => SORT_DESC])->all();
+    }
+
     public function getPostBySlug(string $slug): array|null|ActiveRecordInterface
     {
         return $this->finderRepository->findByOneCondition($this->post, ['slug' => $slug]);

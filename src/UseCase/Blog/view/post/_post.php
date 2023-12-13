@@ -49,7 +49,7 @@ use yii\web\View;
             ->content(
                 Div::widget()->class('entry-content')->content($post->content),
                 Div::widget()
-                    ->class('post-tags mb-5')
+                    ->class('post-tags mt-5 mb-5')
                     ->content(
                         implode(
                             ' ',
