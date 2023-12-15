@@ -95,8 +95,20 @@ FontAwesomeAsset::register($this);
                             )
                     ?>
                     <?= $form->field($formModel, 'title') ?>
-                    <?= $form->field($formModel, 'content_short')->widget(Summernote::class, $configSummerNote) ?>
-                    <?= $form->field($formModel, 'content')->widget(Summernote::class, $configSummerNote) ?>
+                    <?=
+                        $form->field(
+                            $formModel,
+                            'content_short',
+                            ['options' => ['class' => 'mt-3']],
+                        )->widget(Summernote::class, $configSummerNote)
+                    ?>
+                    <?=
+                        $form->field(
+                            $formModel,
+                            'content',
+                            ['options' => ['class' => 'mt-3']],
+                        )->widget(Summernote::class, $configSummerNote)
+                    ?>
                     <?= $form->field($formModel, 'slug') ?>
                     <?=
                         $form
