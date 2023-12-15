@@ -35,6 +35,7 @@ $this->title = $title;
 
 $configSummerNote = [
     'config' => [
+        'blockTags' => ['blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
         'focus' => true,
         'height' => 200,
         'lineHeights' => ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
@@ -42,7 +43,7 @@ $configSummerNote = [
         'minHeight' => null,
         'placeholder' => 'Write here...',
         'toolbar' => [
-            ['style', ['style']],
+            ['style', ['block', 'inline']],
             ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
             ['fontsize', ['fontsize']],
             ['fontname', ['fontname']],

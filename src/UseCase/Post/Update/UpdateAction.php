@@ -81,8 +81,10 @@ final class UpdateAction extends Action
             return $this->controller->redirect(['post/index']);
         }
 
-        $imageFile = file_exists(Yii::getAlias('@uploads') . '/' . $post->image_file)
-            ? '/uploads' . '/' . $post->image_file : '';
+        $imageFile = match($post->image_file !== null && $post->image_file !== '') {
+            true => '/uploads' . '/' . $post->image_file,
+            default => '',
+        };
 
         return $this->controller->render(
             '_form',
